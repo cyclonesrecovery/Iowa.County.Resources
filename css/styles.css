@@ -230,3 +230,153 @@ h2 {
 
 .county-grid {
   display:
+.hero-compact {
+  padding: 2rem 0;
+}
+
+.hero-detail-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1.5rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.25rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #93c5fd;
+  font-weight: 600;
+}
+
+.county-switcher {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.county-switcher label {
+  font-size: 0.85rem;
+  color: #dbeafe;
+}
+
+.county-switcher select {
+  padding: 0.55rem 0.75rem;
+  border-radius: 6px;
+  border: none;
+  font-size: 0.95rem;
+  min-width: 230px;
+}
+
+.table-wrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow-x: auto;
+  box-shadow: var(--shadow);
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.data-table th,
+.data-table td {
+  padding: 0.7rem 0.9rem;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+
+.data-table thead th {
+  background: #f1f5f9;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.data-table .num-col {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.data-table .bar-col {
+  width: 160px;
+}
+
+.pct-bar-track {
+  width: 100%;
+  height: 10px;
+  background: #e2e8f0;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.pct-bar-fill {
+  height: 100%;
+  background: var(--primary);
+  border-radius: 999px;
+}
+
+.row-highlight {
+  background: #fef9c3;
+}
+
+.sub-row td {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.total-row td {
+  background: #f8fafc;
+  font-weight: 700;
+}
+
+.agency-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.agency-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.1rem;
+  box-shadow: var(--shadow);
+}
+
+.agency-card h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1.05rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--primary-dark);
+}
+
+.badge-count {
+  background: var(--accent-bg);
+  color: var(--primary);
+  font-size: 0.85rem;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+}
+
+.agency-list {
+  margin: 0;
+  padding-left: 1.15rem;
+}
+
+.agency-list li {
+  margin-bottom: 0.4rem;
+}
+
+.item-meta,
+.empty-note {
+  color: var(--muted);
+  font-size: 0.88rem;
+}
