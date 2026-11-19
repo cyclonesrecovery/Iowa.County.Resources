@@ -1,0 +1,826 @@
+﻿County,City,Agency,CountyID,FIPS
+Woodbury,185th ANG,185th ANG Fire Department,C97,19193
+Hardin,Ackley,Ackley Fire Department,C42,19083
+Adair,Adair,Adair Fire Department,C01,19001
+Dallas,Adel,Adel Fire Department,C25,19049
+Union,Afton,Afton Fire Department,C88,19175
+Wapello,Agency,Agency Fire Department,C90,19179
+Washington,Ainsworth,Ainsworth Fire Department,C92,19183
+Plymouth,Akron,Akron Fire Department,C75,19149
+Buena Vista,Albert City,Albert City Fire Department,C11,19021
+Monroe,Albia,Albia Fire Department,C68,19135
+Marshall,Albion,Albion Fire Department,C64,19127
+Linn,Alburnett,Alburnett Fire Department,C57,19113
+Hardin,Alden,Alden Fire Department,C42,19083
+Franklin,Alexander,Alexander Fire Department,C35,19069
+Kossuth,Algona,Algona Fire Department,C55,19109
+Wayne,Allerton,Allerton Fire Department,C93,19185
+Butler,Allison,Allison Fire Department,C12,19023
+Buena Vista,Alta,Alta Fire Department,C11,19021
+Chickasaw,Alta Vista,Alta Vista Fire Department,C19,19037
+Sioux,Alton,Alton Fire Department,C84,19167
+Polk,Altoona,Altoona Fire Department,C77,19153
+Iowa,Amana Colonies,Amana Colonies Fire Department,C48,19095
+Des Moines,American Ordnance,American Ordnance Fire Department,C29,19057
+Story,Ames,Ames Fire Department,C85,19169
+Jones,Anamosa,Anamosa Fire Department,C53,19105
+Clinton,Andover,Andover Fire Department,C23,19045
+Jackson,Andrew,Andrew Fire Department,C49,19097
+Cass,Anita,Anita Fire Department,C15,19029
+Polk,Ankeny,Ankeny Fire Department,C77,19153
+Woodbury,Anthon,Anthon Fire Department,C97,19193
+Butler,Aplington,Aplington Fire Department,C12,19023
+Carroll,Arcadia,Arcadia Fire Department,C14,19027
+O'Brien,Archer,Archer Fire Department,C71,19141
+Butler,Aredale,Aredale Fire Department,C12,19023
+Fayette,Arlington,Arlington Fire Department,C33,19065
+Emmet,Armstrong,Armstrong Fire Department,C32,19063
+Dickinson,Arnolds Park-Okoboji,Arnolds Park-Okoboji Fire Department,C30,19059
+Ida,Arthur,Arthur Fire Department,C47,19093
+Dubuque,Asbury,Asbury Fire Department,C31,19061
+Osceola,Ashton,Ashton Fire Department,C72,19143
+Muscatine,Atalissa,Atalissa Fire Department,C70,19139
+Benton,Atkins,Atkins Fire Department,C06,19011
+Cass,Atlantic,Atlantic Fire Department,C15,19029
+Sac,Auburn,Auburn Fire Department,C81,19161
+Audubon,Audubon,Audubon Fire Department,C05,19009
+Cherokee,Aurelia,Aurelia Fire Department,C18,19035
+Buchanan,Aurora,Aurora Fire Department,C10,19019
+Pottawattamie,Avoca,Avoca Fire Department,C78,19155
+Palo Alto,Ayrshire,Ayrshire Fire Department,C74,19147
+Webster,Badger,Badger Fire Department,C94,19187
+Guthrie,Bagley,Bagley Fire Department,C39,19077
+Jackson,Baldwin,Baldwin Fire Department,C49,19097
+Kossuth,Bancroft,Bancroft Fire Department,C55,19109
+Mahaska,Barnes City,Barnes City Fire Department,C62,19123
+Webster,Barnum,Barnum Fire Department,C94,19187
+Jefferson,Batavia,Batavia Fire Department,C51,19101
+Ida,Battle Creek,Battle Creek Fire Department,C47,19093
+Jasper,Baxter,Baxter Fire Department,C50,19099
+Guthrie,Bayard,Bayard Fire Department,C39,19077
+Grundy,Beaman,Beaman Fire Department,C38,19075
+Taylor,Bedford,Bedford Fire Department,C87,19173
+Benton,Belle Plaine,Belle Plaine Fire Department,C06,19011
+Jackson,Bellevue,Bellevue Fire Department,C49,19097
+Wright,Belmond,Belmond Fire Department,C99,19197
+Cedar,Bennett,Bennett Fire Department,C16,19031
+Dubuque,Bernard,Bernard Fire Department,C31,19061
+Scott,Bettendorf,Bettendorf Fire Department,C82,19163
+Van Buren,Birmingham,Birmingham Fire Department,C89,19177
+Hamilton,Blairsburg,Blairsburg Fire Department,C40,19079
+Benton,Blairstown,Blairstown Fire Department,C06,19011
+Wapello,Blakesburg,Blakesburg Fire Department,C90,19179
+Monona,Blencoe,Blencoe Fire Department,C67,19133
+Taylor,Blockton,Blockton Fire Department,C87,19173
+Davis,Bloomfield,Bloomfield Fire Department,C26,19051
+Scott,Blue Grass,Blue Grass Fire Department,C82,19163
+Humboldt,Bode,Bode Fire Department,C46,19091
+Van Buren,Bonaparte,Bonaparte Fire Department,C89,19177
+Polk,Bondurant,Bondurant Fire Department,C77,19153
+Boone,Boone,Boone Fire Department,C08,19015
+Dallas,Bouton,Bouton Fire Department,C25,19049
+Boone,Boxholm,Boxholm Fire Department,C08,19015
+Sioux,Boyden,Boyden Fire Department,C84,19167
+Page,Braddyville,Braddyville Fire Department,C73,19145
+Franklin,Bradford-Grant Lee,Bradford-Grant Lee Fire Department,C35,19069
+Humboldt,Bradgate,Bradgate Fire Department,C46,19091
+Buchanan,Brandon,Brandon Fire Department,C10,19019
+Audubon,Brayton,Brayton Fire Department,C05,19009
+Carroll,Breda,Breda Fire Department,C14,19027
+Adair,Bridgewater,Bridgewater Fire Department,C01,19001
+Washington,Brighton,Brighton Fire Department,C92,19183
+Butler,Bristow,Bristow Fire Department,C12,19023
+Hancock,Britt,Britt Fire Department,C41,19081
+Woodbury,Bronson,Bronson Fire Department,C97,19193
+Poweshiek,Brooklyn,Brooklyn Fire Department,C79,19157
+Hardin,Buckeye,Buckeye Fire Department,C42,19083
+Winnebago,Buffalo Center,Buffalo Center Fire Department,C95,19189
+Scott,Buffalo,Buffalo Fire Department,C82,19163
+Des Moines,Burlington,Burlington Fire Department ,C29,19057
+Kossuth,Burt,Burt Fire Department,C55,19109
+Marion,Bussey,Bussey Fire Department,C63,19125
+Calhoun,Butler Twp Knoke,Butler Twp Knoke Fire Department,C13,19025
+Clinton,Calamus,Calamus Fire Department,C23,19045
+Webster,Callender,Callender Fire Department,C94,19187
+Winneshiek,Calmar,Calmar Fire Department,C96,19191
+O'Brien,Calumet,Calumet Fire Department,C71,19141
+Clinton,Camanche,Camanche Fire Department,C23,19045
+Story,Cambridge,Cambridge Fire Department,C85,19169
+Polk,Camp Twp-Runnells,Camp Twp-Runnells Fire Department,C77,19153
+Van Buren,Cantril,Cantril Fire Department,C89,19177
+Warren,Carlisle,Carlisle Fire Department,C91,19181
+Carroll,Carroll,Carroll Fire Department,C14,19027
+Pottawattamie,Carson,Carson Fire Department,C78,19155
+Pottawattamie,Carter Lake,Carter Lake Fire Department,C78,19155
+Dubuque,Cascade,Cascade Fire Department,C31,19061
+Guthrie,Casey,Casey Fire Department,C39,19077
+Winneshiek,Castalia,Castalia Fire Department,C96,19191
+Monona,Castana,Castana Fire Department,C67,19133
+Black Hawk,Cedar Falls,Cedar Falls Fire Department,C07,19013
+Linn,Cedar Rapids,Cedar Rapids Fire Department,C57,19113
+Mahaska,Cedar Twp,Cedar Twp Fire Department,C62,19123
+Jones,Center Junction,Center Junction Fire Department,C53,19105
+Linn,Center Point,Center Point Fire Department,C57,19113
+Appanoose,Centerville,Centerville Fire Department,C04,19007
+Linn,Central City,Central City Fire Department,C57,19113
+Dubuque,Centralia-Peosta,Centralia-Peosta Fire Department,C31,19061
+Lucas,Chariton,Chariton Fire Department,C59,19117
+Floyd,Charles City,Charles City Fire Department,C34,19067
+Clinton,Charlotte,Charlotte Fire Department,C23,19045
+Crawford,Charter Oak,Charter Oak Fire Department,C24,19047
+Tama,Chelsea,Chelsea Fire Department,C86,19171
+Cherokee,Cherokee,Cherokee Fire Department,C18,19035
+Howard,Chester,Chester Fire Department,C45,19089
+Greene,Churdan,Churdan Fire Department,C37,19073
+Appanoose,Cincinnati,Cincinnati Fire Department,C04,19007
+Webster,Clare,Clare Fire Department,C94,19187
+Cedar,Clarence,Clarence Fire Department,C16,19031
+Page,Clarinda,Clarinda Fire Department,C73,19145
+Wright,Clarion,Clarion Fire Department,C99,19197
+Butler,Clarksville,Clarksville Fire Department,C12,19023
+Marion,Clay Twp,Clay Twp Fire Department,C63,19125
+Cerro Gordo,Clear Lake,Clear Lake Fire Department,C17,19033
+Taylor,Clearfield,Clearfield Fire Department,C87,19173
+Cherokee,Cleghorn,Cleghorn Fire Department,C18,19035
+Marshall,Clemons,Clemons Fire Department,C64,19127
+Fayette,Clermont,Clermont Fire Department,C33,19065
+Clinton,Clinton,Clinton Fire Department,C23,19045
+Polk,Clive,Clive Fire Department,C77,19153
+Tama,Clutier,Clutier Fire Department,C86,19171
+Linn,Coggon,Coggon Fire Department,C57,19113
+Page,Coin,Coin Fire Department,C73,19145
+Delaware,Colesburg,Colesburg Fire Department,C28,19055
+Jasper,Colfax,Colfax Fire Department,C50,19099
+Page,College Springs,College Springs Fire Department,C73,19145
+Story,Collins,Collins Fire Department,C85,19169
+Story,Colo,Colo Fire Department,C85,19169
+Marion,Columbia,Columbia Fire Department,C63,19125
+Louisa,Columbus Junction,Columbus Junction Fire Department,C58,19115
+Floyd,Colwell,Colwell Fire Department,C34,19067
+Muscatine,Conesville,Conesville Fire Department,C70,19139
+Grundy,Conrad,Conrad Fire Department,C38,19075
+Carroll,Coon Rapids,Coon Rapids Fire Department,C14,19027
+Johnson,Coralville,Coralville Fire Department,C52,19103
+Adams,Corning,Corning Fire Department,C02,19003
+Woodbury,Correctionville,Correctionville Fire Department,C97,19193
+Hancock,Corwith,Corwith Fire Department,C41,19081
+Wayne,Corydon,Corydon Fire Department,C93,19185
+Franklin,Coulter,Coulter Fire Department,C35,19069
+Pottawattamie,Council Bluffs,Council Bluffs Fire Department,C78,19155
+Washington,Crawfordsville,Crawfordsville Fire Department,C92,19183
+Pottawattamie,Crescent,Crescent Fire Department,C78,19155
+Howard,Cresco,Cresco Fire Department,C45,19089
+Union,Creston,Creston Fire Department,C88,19175
+Hancock,Crystal Lake,Crystal Lake Fire Department,C41,19081
+Cass,Cumberland,Cumberland Fire Department,C15,19029
+Woodbury,Cushing,Cushing Fire Department,C97,19193
+Palo Alto,Cylinder,Cylinder Fire Department,C74,19147
+Dallas,Dallas Center,Dallas Center Fire Department,C25,19049
+Woodbury,Danbury,Danbury Fire Department,C97,19193
+Des Moines,Danville,Danville Fire Department,C29,19057
+Scott,Davenport,Davenport Fire Department,C82,19163
+Webster,Dayton,Dayton Fire Department,C94,19187
+Dallas,De Soto,De Soto Fire Department,C25,19049
+Winneshiek,Decorah,Decorah Fire Department,C96,19191
+Carroll,Dedham,Dedham Fire Department,C14,19027
+Poweshiek,Deep River,Deep River Fire Department,C79,19157
+Shelby,Defiance,Defiance Fire Department,C83,19165
+Delaware,Delaware,Delaware Fire Department,C28,19055
+Polk,Delaware Twp,Delaware Twp Fire Department,C77,19153
+Delaware,Delhi,Delhi Fire Department,C28,19055
+Clinton,Delmar,Delmar Fire Department,C23,19045
+Crawford,Deloit,Deloit Fire Department,C24,19047
+Keokuk,Delta,Delta Fire Department,C54,19107
+Crawford,Denison,Denison Fire Department,C24,19047
+Lee,Denmark,Denmark Fire Department,C56,19111
+Bremer,Denver,Denver Fire Department,C09,19017
+Lucas,Derby,Derby Fire Department,C59,19117
+Polk,Des Moines,Des Moines Fire Department,C77,19153
+Polk,Des Moines Int'll Airport,Des Moines Int'll Airport Fire Department,C77,19153
+Lee,Des Moines Twp,Des Moines Twp Fire Department,C56,19111
+Clinton,DeWitt,DeWitt Fire Department,C23,19045
+Dallas,Dexter,Dexter Fire Department,C25,19049
+Ringgold,Diagonal,Diagonal Fire Department,C80,19159
+Clay,Dickens,Dickens Fire Department,C21,19041
+Grundy,Dike,Dike Fire Department,C38,19075
+Scott,Dixon,Dixon Fire Department,C82,19163
+Scott,Donahue,Donahue Fire Department,C82,19163
+Lee,Donnellson,Donnellson Fire Department,C56,19111
+Lyon,Doon,Doon Fire Department,C60,19119
+Van Buren,Douds,Douds Fire Department,C89,19177
+Cerro Gordo,Dougherty,Dougherty Fire Department,C17,19033
+Pocahontas,Dover Twp Varina,Dover Twp Varina Fire Department,C76,19151
+Crawford,Dow City,Dow City Fire Department,C24,19047
+Wright,Dows,Dows Fire Department,C99,19197
+Davis,Drakesville,Drakesville Fire Department,C26,19051
+Dubuque,Dubuque Airport,Dubuque Airport Fire Department,C31,19061
+Dubuque,Dubuque,Dubuque Fire Department,C31,19061
+Butler,Dumont,Dumont Fire Department,C12,19023
+Webster,Duncombe,Duncombe Fire Department,C94,19187
+Delaware,Dundee,Dundee Fire Department,C28,19055
+Black Hawk,Dunkerton,Dunkerton Fire Department,C07,19013
+Harrison,Dunlap,Dunlap Fire Department,C43,19085
+Cedar,Durant,Durant Fire Department,C16,19031
+Dubuque,Dyersville,Dyersville Fire Department,C31,19061
+Tama,Dysart,Dysart Fire Department,C86,19171
+Wright,Eagle Grove,Eagle Grove Fire Department,C99,19197
+Madison,Earlham,Earlham Fire Department,C61,19121
+Shelby,Earling,Earling Fire Department,C83,19165
+Delaware,Earlville,Earlville Fire Department,C28,19055
+Sac,Early,Early Fire Department,C81,19161
+Madison,East Peru,East Peru Fire Department,C61,19121
+Linn,Eastern Iowa Airport,Eastern Iowa Airport Fire Department,C57,19113
+Wapello,Eddyville,Eddyville Fire Department,C90,19179
+Delaware,Edgewood,Edgewood Fire Department,C28,19055
+tama,Elberon,Elberon Fire Department,C86,19171
+Wapello,Eldon,Eldon Fire Department,C90,19179
+Hardin,Eldora,Eldora Fire Department,C42,19083
+Scott,Eldridge,Eldridge Fire Department,C82,19163
+Fayette,Elgin,Elgin Fire Department,C33,19065
+Shelby,Elk Horn,Elk Horn Fire Department,C83,19165
+Clayton,Elkader,Elkader Fire Department,C22,19043
+Polk,Elkhart,Elkhart Fire Department,C77,19153
+Montgomery,Elliott,Elliott Fire Department,C69,19137
+Hamilton,Ellsworth,Ellsworth Fire Department,C40,19079
+Howard,Elma,Elma Fire Department,C45,19089
+Linn,Ely,Ely Fire Department,C57,19113
+Mills,Emerson,Emerson Fire Department,C65,19129
+Palo Alto,Emmetsburg,Emmetsburg Fire Department,C74,19147
+Dubuque,Epworth,Epworth Fire Department,C31,19061
+Page,Essex,Essex Fire Department,C73,19145
+Emmet,Estherville,Estherville Fire Department,C32,19063
+Black Hawk,Evansdale,Evansdale Fire Department,C07,19013
+Clay,Everly,Everly Fire Department,C21,19041
+Audubon,Exira,Exira Fire Department,C05,19009
+Buchanan,Fairbank,Fairbank Fire Department,C10,19019
+Linn,Fairfax,Fairfax Fire Department,C57,19113
+Jefferson,Fairfield,Fairfield Fire Department,C51,19101
+Dubuque,Farley,Farley Fire Department,C31,19061
+Clayton,Farmersburg,Farmersburg Fire Department,C22,19043
+Van Buren,Farmington,Farmington Fire Department,C89,19177
+Calhoun,Farnhamville,Farnhamville Fire Department,C13,19025
+Fremont,Farragut,Farragut Fire Department,C36,19071
+Fayette,Fayette,Fayette Fire Department,C33,19065
+Kossuth,Fenton,Fenton Fire Department,C55,19109
+Marshall,Ferguson,Ferguson Fire Department,C64,19127
+Worth,Fertile,Fertile Fire Department,C98,19195
+Story,,Fire Service Training Bureau,C85,19169
+Davis,Floris,Floris Fire Department,C26,19051
+Floyd,Floyd,Floyd Fire Department,C34,19067
+Pocahontas,Fonda,Fonda Fire Department,C76,19151
+Adair,Fontanelle,Fontanelle Fire Department,C01,19001
+Winnebago,Forest City,Forest City Fire Department,C95,19189
+Winneshiek,Fort Atkinson,Fort Atkinson Fire Department,C96,19191
+Webster,Fort Dodge,Fort Dodge Fire Department,C94,19187
+Lee,Fort Madison,Fort Madison Fire Department,C56,19111
+Clay,Fostoria,Fostoria Fire Department,C21,19041
+Winneshiek,Frankville,Frankville Fire Department,C96,19191
+Chickasaw,Fredericksburg,Fredericksburg Fire Department,C19,19037
+Bremer,Frederika,Frederika Fire Department,C09,19017
+Muscatine,Fruitland,Fruitland Fire Department,C70,19139
+Ida,Galva,Galva Fire Department,C47,19093
+Clayton,Garber,Garber Fire Department,C22,19043
+Decatur,Garden Grove,Garden Grove Fire Department,C27,19053
+Clayton,Garnavillo,Garnavillo Fire Department,C22,19043
+Hancock,Garner,Garner Fire Department,C41,19081
+Benton,Garrison,Garrison Fire Department,C06,19011
+Tama,Garwin,Garwin Fire Department,C86,19171
+Franklin,Geneva,Geneva Fire Department,C35,19069
+Lyon,George,George Fire Department,C60,19119
+Story,Gilbert-Franklin Twp,Gilbert-Franklin Twp Fire Department,C85,19169
+Black Hawk,Gilbertville,Gilbertville Fire Department,C07,19013
+Marshall,Gilman,Gilman Fire Department,C64,19127
+Humboldt,Gilmore City,Gilmore City Fire Department,C46,19091
+Tama,Gladbrook,Gladbrook Fire Department,C86,19171
+Mills,Glenwood,Glenwood Fire Department,C65,19129
+Carroll,Glidden,Glidden Fire Department,C14,19027
+Wright,Goldfield,Goldfield Fire Department,C99,19197
+Hancock,Goodell,Goodell Fire Department,C41,19081
+Clinton,Goose Lake,Goose Lake Fire Department,C23,19045
+Webster,Gowrie,Gowrie Fire Department,C94,19187
+Palo Alto,Graettinger,Graettinger Fire Department,C74,19147
+Worth,Grafton,Grafton Fire Department,C98,19195
+Greene,Grand Junction,Grand Junction Fire Department,C37,19073
+Clinton,Grand Mound,Grand Mound Fire Department,C23,19045
+Decatur,Grand River,Grand River Fire Department,C27,19053
+Louisa,Grandview,Grandview Fire Department,C58,19115
+Dallas,Granger,Granger Fire Department,C25,19049
+Montgomery,Grant,Grant Fire Department,C69,19137
+Sioux,Granville,Granville Fire Department,C84,19167
+Taylor,Gravity,Gravity Fire Department,C87,19173
+Delaware,Greeley,Greeley Fire Department,C28,19055
+Marshall,Green Mountain,Green Mountain Fire Department,C64,19127
+Butler,Greene,Greene Fire Department,C12,19023
+Adair,Greenfield,Greenfield Fire Department,C01,19001
+Poweshiek,Grinnell,Grinnell Fire Department,C79,19157
+Cass,Griswold,Griswold Fire Department,C15,19029
+Grundy,Grundy Center,Grundy Center Fire Department,C38,19075
+Emmet,Gruver,Gruver Fire Department,C32,19063
+Guthrie,Guthrie Center,Guthrie Center Fire Department,C39,19077
+Clayton,Guttenberg,Guttenberg Fire Department,C22,19043
+Carroll,Halbur,Halbur Fire Department,C14,19027
+Fremont,Hamburg,Hamburg Fire Department,C36,19071
+Franklin,Hampton,Hampton Fire Department,C35,19069
+Pottawattamie,Hancock,Hancock Fire Department,C78,19155
+Worth,Hanlontown,Hanlontown Fire Department,C98,19195
+Franklin,Hansell,Hansell Fire Department,C35,19069
+Webster,Harcourt,Harcourt Fire Department,C94,19187
+Humboldt,Hardy,Hardy Fire Department,C46,19091
+Shelby,Harlan,Harlan Fire Department,C83,19165
+Fayette,Harlan Twp,Harlan Twp Fire Department (AKA Maynard FD),C33,19065
+Allamakee,Harpers Ferry,Harpers Ferry Fire Department,C03,19005
+Osceola,Harris,Harris Fire Department,C72,19143
+Warren,Hartford,Hartford Fire Department,C91,19181
+O'Brien,Hartley,Hartley Fire Department,C71,19141
+Poweshiek,Hartwick,Hartwick Fire Department,C79,19157
+Mills,Hastings,Hastings Fire Department,C65,19129
+Pocahontas,Havelock,Havelock Fire Department,C76,19151
+Marshall,Haverhill,Haverhill Fire Department,C64,19127
+Sioux,Hawarden,Hawarden Fire Department,C84,19167
+Fayette,Hawkeye,Hawkeye Fire Department,C33,19065
+Buchanan,Hazleton,Hazleton Fire Department,C10,19019
+Keokuk,Hedrick,Hedrick Fire Department,C54,19107
+Mills,Henderson,Henderson Fire Department,C65,19129
+Linn,Hiawatha,Hiawatha Fire Department,C57,19113
+Johnson,Hills,Hills Fire Department,C52,19103
+Henry,Hillsboro,Hillsboro Fire Department,C44,19087
+Plymouth,Hinton,Hinton Fire Department,C75,19149
+Grundy,Holland,Holland Fire Department,C38,19075
+Ida,Holstein,Holstein Fire Department,C47,19093
+Dubuque,Holy Cross,Holy Cross Fire Department,C31,19061
+Delaware,Hopkinton,Hopkinton Fire Department,C28,19055
+Woodbury,Hornick,Hornick Fire Department,C97,19193
+Sioux,Hospers,Hospers Fire Department,C84,19167
+Lee,Houghton Cedar Twp,Houghton Cedar Twp Fire Department,C56,19111
+Hardin,Hubbard,Hubbard Fire Department,C42,19083
+Black Hawk,Hudson,Hudson Fire Department,C07,19013
+Sioux,Hull,Hull Fire Department,C84,19167
+Humboldt,Humboldt,Humboldt Fire Department,C46,19091
+Wayne,Humeston,Humeston Fire Department,C93,19185
+Story,Huxley,Huxley Fire Department,C85,19169
+Ida,Ida Grove,Ida Grove Fire Department,C47,19093
+Buchanan,Independence,Independence Fire Department,C10,19019
+Buchanan,Independence MHI,Independence MHI Fire Department,C10,19019
+Marion,Indiana Twp,Indiana Twp Fire Department (Attica IA),C63,19125
+Warren,Indianola,Indianola Fire Department,C91,19181
+Lyon,Inwood,Inwood Fire Department,C60,19119
+Chickasaw,Ionia,Ionia Fire Department,C19,19037
+Johnson,Iowa City,Iowa City Fire Department,C52,19103
+Hardin,Iowa Falls,Iowa Falls Fire Department,C42,19083
+Sioux,Ireton,Ireton Fire Department,C84,19167
+Shelby,Irwin,Irwin Fire Department,C83,19165
+Keokuk,Jackson Twp - Ollie,Jackson Twp - Ollie Fire Department,C54,19107
+Lee,Jackson Twp,Jackson Twp Fire Department,C56,19111
+Guthrie,Jamaica,Jamaica Fire Department,C39,19077
+Bremer,Janesville,Janesville Fire Department,C09,19017
+Greene,Jefferson,Jefferson Fire Department,C37,19073
+Johnson,Jefferson-Monroe,Jefferson-Monroe Fire Department,C52,19103
+Buchanan,Jesup,Jesup Fire Department,C10,19019
+Hamilton,Jewell,Jewell Fire Department,C40,19079
+Polk,Johnston-Grimes Metropolitan,Johnston-Grimes Metropolitan Fire Department,C77,19153
+Worth,Joice,Joice Fire Department,C98,19195
+Calhoun,Jolley,Jolley Fire Department,C13,19025
+Washington,Kalona,Kalona Fire Department,C92,19183
+Hamilton,Kamrar,Kamrar Fire Department,C40,19079
+Hancock,Kanawha,Kanawha Fire Department,C41,19081
+Ringgold,Kellerton,Kellerton Fire Department,C80,19159
+Jasper,Kellogg,Kellogg Fire Department,C50,19099
+Worth,Kensett,Kensett Fire Department,C98,19195
+Lee,Keokuk,Keokuk Fire Department,C56,19111
+Van Buren,Keosauqua,Keosauqua Fire Department,C89,19177
+Keokuk,Keota,Keota Fire Department,C54,19107
+Keokuk,Keswick,Keswick Fire Department,C54,19107
+Dubuque,Key West,Key West Fire Department,C31,19061
+Benton,Keystone,Keystone Fire Department,C06,19011
+Audubon,Kimballton,Kimballton Fire Department,C05,19009
+Plymouth,Kingsley,Kingsley Fire Department,C75,19149
+Shelby,Kirkman,Kirkman Fire Department,C83,19165
+Crawford,Kiron,Kiron Fire Department,C24,19047
+Hancock,Klemme,Klemme Fire Department,C41,19081
+Calhoun,Knierim,Knierim Fire Department,C13,19025
+Marion,Knoxville,Knoxville Fire Department,C63,19125
+Marion,Knoxville Rural,Knoxville Rural Fire Department,C63,19125
+Jackson,La Motte,La Motte Fire Department,C49,19097
+Black Hawk,La Porte City,La Porte City Fire Department,C07,19013
+Warren,Lacona,Lacona Fire Department,C91,19181
+Iowa,Ladora,Ladora Fire Department,C48,19095
+Calhoun,Lake City,Lake City Fire Department,C13,19025
+Winnebago,Lake Mills,Lake Mills Fire Department,C95,19189
+Dickinson,Lake Park,Lake Park Fire Department,C30,19059
+Sac,Lake View,Lake View Fire Department,C81,19161
+Kossuth,Lakota,Lakota Fire Department,C55,19109
+Decatur,Lamoni,Lamoni Fire Department,C27,19053
+Buchanan,Lamont,Lamont Fire Department,C10,19019
+Carroll,Lanesboro,Lanesboro Fire Department,C14,19027
+Allamakee,Lansing,Lansing Fire Department,C03,19005
+Lyon,Larchwood,Larchwood Fire Department,C60,19119
+Cherokee,Larrabee,Larrabee Fire Department,C18,19035
+Franklin,Latimer,Latimer Fire Department,C35,19069
+Marshall,Laurel,Laurel Fire Department,C64,19127
+Pocahontas,Laurens,Laurens Fire Department,C76,19151
+Chickasaw,Lawler,Lawler Fire Department,C19,19037
+Woodbury,Lawton,Lawton Fire Department,C97,19193
+Marshall,Le Grand,Le Grand Fire Department,C64,19127
+Plymouth,Le Mars,Le Mars Fire Department,C75,19149
+Scott,LeClaire,LeClaire Fire Department,C82,19163
+Kossuth,Ledyard,Ledyard Fire Department,C55,19109
+Webster,Lehigh,Lehigh Fire Department,C94,19187
+Taylor,Lenox,Lenox Fire Department,C87,19173
+Decatur,Leon,Leon Fire Department,C27,19053
+Lyon,Lester,Lester Fire Department,C60,19119
+Louisa,Letts,Letts Fire Department,C58,19115
+Cass,Lewis,Lewis Fire Department,C15,19029
+Pottawattamie,Lewis Twp,Lewis Twp Fire Department,C78,19155
+Jefferson,Libertyville,Libertyville Fire Department,C51,19101
+Carroll,Lidderdale,Lidderdale Fire Department,C14,19027
+Howard,Lime Springs,Lime Springs Fire Department,C45,19089
+Wayne,Lineville,Lineville Fire Department,C93,19185
+Linn,Lisbon,Lisbon Fire Department,C57,19113
+Marshall,Liscomb,Liscomb Fire Department,C64,19127
+Lyon,Little Rock,Little Rock Fire Department,C60,19119
+Harrison,Little Sioux,Little Sioux Fire Department,C43,19085
+Clayton,Littleport,Littleport Fire Department,C22,19043
+Humboldt,Livermore,Livermore Fire Department,C46,19091
+Jefferson,Lockridge,Lockridge Fire Department,C51,19101
+Harrison,Logan,Logan Fire Department,C43,19085
+Calhoun,Lohrville,Lohrville Fire Department,C13,19025
+Kossuth,Lone Rock,Lone Rock Fire Department,C55,19109
+Johnson,Lone Tree,Lone Tree Fire Department,C52,19103
+Scott,Long Grove,Long Grove Fire Department,C82,19163
+Union,Lorimor,Lorimor Fire Department,C88,19175
+Clinton,Lost Nation,Lost Nation Fire Department,C23,19045
+Monroe,Lovilia,Lovilia Fire Department,C68,19135
+Clinton,Low Moor,Low Moor Fire Department,C23,19045
+Cedar,Lowden,Lowden Fire Department,C16,19031
+Clayton,Luana,Luana Fire Department,C22,19043
+Lucas,Lucas,Lucas Fire Department,C59,19117
+Kossuth,LuVerne,LuVerne Fire Department,C55,19109
+Benton,Luzerne,Luzerne Fire Department,C06,19011
+Jasper,Lynnville,Lynnville Fire Department,C50,19099
+Sac,Lytton,Lytton Fire Department,C81,19161
+Pottawattamie,Macedonia,Macedonia Fire Department,C78,19155
+Boone,Madrid,Madrid Fire Department,C08,19015
+Harrison,Magnolia,Magnolia Fire Department,C43,19085
+Poweshiek,Malcom,Malcom Fire Department,C79,19157
+Palo Alto,Mallard,Mallard Fire Department,C74,19147
+Mills,Malvern,Malvern Fire Department,C65,19129
+Delaware,Manchester,Manchester Fire Department,C28,19055
+Crawford,Manilla,Manilla Fire Department,C24,19047
+Worth,Manly,Manly Fire Department,C98,19195
+Carroll,Manning,Manning Fire Department,C14,19027
+Calhoun,Manson,Manson Fire Department,C13,19025
+Monona,Mapleton,Mapleton Fire Department,C67,19133
+Jackson,Maquoketa,Maquoketa Fire Department,C49,19097
+Buena Vista,Marathon,Marathon Fire Department,C11,19021
+Floyd,Marble Rock,Marble Rock Fire Department,C34,19067
+Cherokee,Marcus,Marcus Fire Department,C18,19035
+Iowa,Marengo,Marengo Fire Department,C48,19095
+Linn,Marion,Marion Fire Department,C57,19113
+Cass,Marne,Marne Fire Department,C15,19029
+Marshall,Marshalltown,Marshalltown Fire Department,C64,19127
+Jones,Martelle,Martelle Fire Department,C53,19105
+Warren,Martensdale,Martensdale Fire Department,C91,19181
+Cerro Gordo,Mason City,Mason City Fire Department,C17,19033
+Delaware,Masonville,Masonville Fire Department,C28,19055
+Cass,Massena,Massena Fire Department,C15,19029
+Sioux,Matlock,Matlock Fire Department,C84,19167
+Sioux,Maurice,Maurice Fire Department,C84,19167
+Story,Maxwell,Maxwell Fire Department,C85,19169
+Osceola,May City,May City Fire Department,C72,19143
+Scott,Maysville,Maysville Fire Department,C82,19163
+Story,McCallsburg,McCallsburg Fire Department,C85,19169
+Scott,McCausland,McCausland Fire Department,C82,19163
+Pottawattamie,McClelland,McClelland Fire Department,C78,19155
+Clayton,McGregor,McGregor Fire Department,C22,19043
+Cedar,Mechanicsville,Mechanicsville Fire Department,C16,19031
+Des Moines,Mediapolis,Mediapolis Fire Department,C29,19057
+Marshall,Melbourne,Melbourne Fire Department,C64,19127
+Marion,Melcher-Dallas,Melcher-Dallas Fire Department,C63,19125
+Monroe,Melrose,Melrose Fire Department,C68,19135
+Osceola,Melvin,Melvin Fire Department,C72,19143
+Guthrie,Menlo,Menlo Fire Department,C39,19077
+Cherokee,Meriden,Meriden Fire Department,C18,19035
+Plymouth,Merrill,Merrill Fire Department,C75,19149
+Cerro Gordo,Meservey,Meservey Fire Department,C17,19033
+Jackson,Miles,Miles Fire Department,C49,19097
+Dickinson,Milford,Milford Fire Department,C30,19059
+Iowa,Millersburg,Millersburg Fire Department,C48,19095
+Warren,Milo,Milo Fire Department,C91,19181
+Van Buren,Milton,Milton Fire Department,C89,19177
+Dallas,Minburn,Minburn Fire Department,C25,19049
+Pottawattamie,Minden,Minden Fire Department,C78,19155
+Jasper,Mingo,Mingo Fire Department,C50,19099
+Harrison,Missouri Valley,Missouri Valley Fire Department,C43,19085
+Polk,Mitchellville,Mitchellville Fire Department,C77,19153
+Harrison,Modale,Modale Fire Department,C43,19085
+Harrison,Mondamin,Mondamin Fire Department,C43,19085
+Clayton,Monona,Monona Fire Department,C22,19043
+Jasper,Monroe,Monroe Fire Department,C50,19099
+Linn,Monroe Twp,Monroe Twp Fire Department,C57,19113
+Poweshiek,Montezuma,Montezuma Fire Department,C79,19157
+Jones,Monticello,Monticello Fire Department,C53,19105
+Tama,Montour,Montour Fire Department,C86,19171
+Muscatine,Montpelier,Montpelier Fire Department,C70,19139
+Lee,Montrose,Montrose Fire Department,C56,19111
+Monona,Moorhead,Moorhead Fire Department,C67,19133
+Webster,Moorland,Moorland Fire Department,C94,19187
+Appanoose,Moravia,Moravia Fire Department,C04,19007
+Jones,Morley,Morley Fire Department,C53,19105
+Louisa,Morning Sun,Morning Sun Fire Department,C58,19115
+Appanoose,Moulton,Moulton Fire Department,C04,19007
+Benton,Mount Auburn,Mount Auburn Fire Department,C06,19011
+Ringgold,Mount Ayr,Mount Ayr Fire Department,C80,19159
+Henry,Mount Pleasant,Mount Pleasant Fire Department,C44,19087
+Henry,Mount Union,Mount Union Fire Department,C44,19087
+Linn,Mount Vernon,Mount Vernon Fire Department,C57,19113
+Woodbury,Moville,Moville Fire Department,C97,19193
+Clarke,Murray,Murray Fire Department,C20,19039
+Muscatine,Muscatine,Muscatine Fire Department,C70,19139
+Appanoose,Mystic,Mystic Fire Department,C04,19007
+Chickasaw,Nashua,Nashua Fire Department,C19,19037
+Sac,Nemaha,Nemaha Fire Department,C81,19161
+Pottawattamie,Neola,Neola Fire Department,C78,19155
+Story,Nevada,Nevada Fire Department,C85,19169
+Allamakee,New Albin,New Albin Fire Department,C03,19005
+Chickasaw,New Hampton,New Hampton Fire Department,C19,19037
+Butler,New Hartford,New Hartford Fire Department,C12,19023
+Scott,New Liberty,New Liberty Fire Department,C82,19163
+Henry,New London,New London Fire Department,C44,19087
+Taylor,New Market,New Market Fire Department,C87,19173
+Hardin,New Providence,New Providence Fire Department,C42,19083
+Mahaska,New Sharon,New Sharon Fire Department,C62,19123
+Dubuque,New Vienna-Luxemburg,New Vienna-Luxemburg Fire Department,C31,19061
+Warren,New Virginia,New Virginia Fire Department,C91,19181
+Buena Vista,Newell,Newell Fire Department,C11,19021
+Benton,Newhall,Newhall Fire Department,C06,19011
+Jasper,Newton,Newton Fire Department,C50,19099
+Muscatine,Nichols,Nichols Fire Department,C70,19139
+Floyd,Nora Springs,Nora Springs Fire Department,C34,19067
+Iowa,North English,North English Fire Department,C48,19095
+Keokuk,North Keokuk Co,North Keokuk Co Fire Department,C54,19107
+Johnson,North Liberty,North Liberty Fire Department,C52,19103
+Chickasaw,North Washington,North Washington Fire Department,C19,19037
+Polk,Northern Warren,Northern Warren Fire Department,C77,19153
+Worth,Northwood,Northwood Fire Department,C98,19195
+Warren,Norwalk,Norwalk Fire Department,C91,19181
+Benton,Norway,Norway Fire Department,C06,19011
+Mills,Oak Twp,Oak Twp Fire Department,C65,19129
+Pottawattamie,Oakland,Oakland Fire Department,C78,19155
+Louisa,Oakville,Oakville Fire Department,C58,19115
+Osceola,Ocheyedan,Ocheyedan Fire Department,C72,19143
+Sac,Odebolt,Odebolt Fire Department,C81,19161
+Fayette,Oelwein,Oelwein Fire Department,C33,19065
+Boone,Ogden,Ogden Fire Department,C08,19015
+Henry,Olds,Olds Fire Department,C44,19087
+Jones,Olin,Olin Fire Department,C53,19105
+Monona,Onawa,Onawa Fire Department,C67,19133
+Fayette,Oran,Oran Fire Department,C33,19065
+Sioux,Orange City,Orange City Fire Department,C84,19167
+Adair,Orient,Orient Fire Department,C01,19001
+Mitchell,Osage,Osage Fire Department,C66,19131
+Clarke,Osceola,Osceola Fire Department,C20,19039
+Mahaska,Oskaloosa,Oskaloosa Fire Department,C62,19123
+Winneshiek,Ossian,Ossian Fire Department,C96,19191
+Webster,Otho,Otho Fire Department,C94,19187
+Woodbury,Oto,Oto Fire Department,C97,19193
+Humboldt,Ottosen,Ottosen Fire Department,C46,19091
+Wapello,Ottumwa,Ottumwa Fire Department,C90,19179
+Johnson,Oxford,Oxford Fire Department,C52,19103
+Jones,Oxford Junction,Oxford Junction Fire Department,C53,19105
+Plymouth,Oyens,Oyens Fire Department,C75,19149
+Mills,Pacific Junction,Pacific Junction Fire Department,C65,19129
+Jefferson,Packwood,Packwood Fire Department,C51,19101
+Pocahontas,Palmer,Palmer Fire Department,C76,19151
+Linn,Palo,Palo Fire Department,C57,19113
+Shelby,Panama,Panama Fire Department,C83,19165
+Guthrie,Panora,Panora Fire Department,C39,19077
+Butler,Parkersburg,Parkersburg Fire Department,C12,19023
+Greene,Paton,Paton Fire Department,C37,19073
+O'Brien,Paullina,Paullina Fire Department,C71,19141
+Marion,Pella,Pella Fire Department,C63,19125
+Fremont,Percival,Percival Fire Department,C36,19071
+Dallas,Perry,Perry Fire Department,C25,19049
+Harrison,Persia,Persia Fire Department,C43,19085
+Clay,Peterson,Peterson Fire Department,C21,19041
+Woodbury,Pierson,Pierson Fire Department,C97,19193
+Boone,Pilot Mound,Pilot Mound Fire Department,C08,19015
+Harrison,Pisgah,Pisgah Fire Department,C43,19085
+Bremer,Plainfield,Plainfield Fire Department,C09,19017
+Polk,Pleasant Hill,Pleasant Hill Fire Department,C77,19153
+Marion,Pleasantville,Pleasantville Fire Department,C63,19125
+Pocahontas,Plover,Plover Fire Department,C76,19151
+Cerro Gordo,Plymouth,Plymouth Fire Department,C17,19033
+Pocahontas,Pocahontas,Pocahontas Fire Department,C76,19151
+Polk,Polk City,Polk City Fire Department,C77,19153
+Calhoun,Pomeroy,Pomeroy Fire Department,C13,19025
+Shelby,Portsmouth,Portsmouth Fire Department,C83,19165
+Allamakee,Postville,Postville Fire Department,C03,19005
+Jasper,Prairie City,Prairie City Fire Department,C50,19099
+Linn,Prairieburg,Prairieburg Fire Department,C57,19113
+Adams,Prescott,Prescott Fire Department,C02,19003
+Jackson,Preston,Preston Fire Department,C49,19097
+O'Brien,Primghar,Primghar Fire Department,C71,19141
+Scott,Princeton,Princeton Fire Department,C82,19163
+Howard,Protivin,Protivin Fire Department,C45,19089
+Davis,Pulaski,Pulaski Fire Department,C26,19051
+Buchanan,Quasqueton,Quasqueton Fire Department,C10,19019
+Cherokee,Quimby,Quimby Fire Department,C18,19035
+Hardin,Radcliffe,Radcliffe Fire Department,C42,19083
+Winnebago,Rake,Rake Fire Department,C95,19189
+Carroll,Ralston,Ralston Fire Department,C14,19027
+Hamilton,Randall,Randall Fire Department,C40,19079
+Fremont,Randolph,Randolph Fire Department,C36,19071
+Black Hawk,Raymond,Raymond Fire Department,C07,19013
+Bremer,Readlyn,Readlyn Fire Department,C09,19017
+Jasper,Reasnor,Reasnor Fire Department,C50,19099
+Montgomery,Red Oak,Red Oak Fire Department,C69,19137
+Dallas,Redfield,Redfield Fire Department,C25,19049
+Grundy,Reinbeck,Reinbeck Fire Department,C38,19075
+Buena Vista,Rembrandt,Rembrandt Fire Department,C11,19021
+Plymouth,Remsen,Remsen Fire Department,C75,19149
+Humboldt,Renwick,Renwick Fire Department,C46,19091
+Marshall,Rhodes,Rhodes Fire Department,C64,19127
+Mitchell,Riceville,Riceville Fire Department,C66,19131
+Keokuk,Richland,Richland Fire Department,C54,19107
+Crawford,Ricketts,Ricketts Fire Department,C24,19047
+Winneshiek,Ridgeway,Ridgeway Fire Department,C96,19191
+Emmet,Ringsted,Ringsted Fire Department,C32,19063
+Greene,Rippey,Rippey Fire Department,C37,19073
+Scott,Riverdale,Riverdale Fire Department,C82,19163
+Washington,Riverside,Riverside Fire Department,C92,19183
+Fremont,Riverton,Riverton Fire Department,C36,19071
+Linn,Robins,Robins Fire Department,C57,19113
+Lyon,Rock Rapids,Rock Rapids Fire Department,C60,19119
+Sioux,Rock Valley,Rock Valley Fire Department,C84,19167
+Floyd,Rockford,Rockford Fire Department,C34,19067
+Calhoun,Rockwell City,Rockwell City Fire Department,C13,19025
+Cerro Gordo,Rockwell,Rockwell Fire Department,C17,19033
+Story,Roland,Roland Fire Department,C85,19169
+Pocahontas,Rolfe,Rolfe Fire Department,C76,19151
+Wright,Rowan,Rowan Fire Department,C99,19197
+Buchanan,Rowley,Rowley Fire Department,C10,19019
+Clay,Royal,Royal Fire Department,C21,19041
+Floyd,Rudd,Rudd Fire Department,C34,19067
+Lucas,Russell,Russell Fire Department,C59,19117
+Palo Alto,Ruthven,Ruthven Fire Department,C74,19147
+Delaware,Ryan,Ryan Fire Department,C28,19055
+Jackson,Sabula,Sabula Fire Department,C49,19097
+Sac,Sac City,Sac City Fire Department,C81,19161
+Mitchell,Saint Ansgar,Saint Ansgar Fire Department,C66,19131
+Madison,Saint Charles,Saint Charles Fire Department,C61,19121
+Fayette,Saint Lucas,Saint Lucas Fire Department,C33,19065
+Warren,Saint Mary's Jackson Twp,Saint Mary's Jackson Twp Fire Department,C91,19181
+Clayton,Saint Olaf,Saint Olaf Fire Department,C22,19043
+Lee,Saint Paul,Saint Paul Fire Department,C56,19111
+Henry,Salem,Salem Fire Department,C44,19087
+Woodbury,Salix,Salix Fire Department,C97,19193
+O'Brien,Sanborn,Sanborn Fire Department,C71,19141
+Polk,Saylor Twp,Saylor Twp Fire Department,C77,19153
+Winnebago,Scarville,Scarville Fire Department,C95,19189
+Sac,Schaller,Schaller Fire Department,C81,19161
+Crawford,Schleswig,Schleswig Fire Department,C24,19047
+Greene,Scranton,Scranton Fire Department,C37,19073
+Poweshiek,Searsboro,Searsboro Fire Department,C79,19157
+Woodbury,Sergeant Bluff,Sergeant Bluff Fire Department,C97,19193
+Wayne,Seymour,Seymour Fire Department,C93,19185
+Taylor,Sharpsburg,Sharpsburg Fire Department,C87,19173
+Franklin,Sheffield,Sheffield Fire Department,C35,19069
+Shelby,Shelby,Shelby Fire Department,C83,19165
+O'Brien,Sheldon,Sheldon Fire Department,C71,19141
+Butler,Shell Rock,Shell Rock Fire Department,C12,19023
+Benton,Shellsburg,Shellsburg Fire Department,C06,19011
+Page,Shenandoah,Shenandoah Fire Department,C73,19145
+Dubuque,Sherrill,Sherrill Fire Department,C31,19061
+Osceola,Sibley,Sibley Fire Department,C72,19143
+Fremont,Sidney,Sidney Fire Department,C36,19071
+Keokuk,Sigourney,Sigourney Fire Department,C54,19107
+Mills,Silver City,Silver City Fire Department,C65,19129
+Sioux,Sioux Center,Sioux Center Fire Department,C84,19167
+Woodbury,Sioux City,Sioux City Fire Department,C97,19193
+Buena Vista,Sioux Rapids,Sioux Rapids Fire Department,C11,19021
+Story,Slater,Slater Fire Department,C85,19169
+Woodbury,Sloan,Sloan Fire Department,C97,19193
+Woodbury,Smithland,Smithland Fire Department,C97,19193
+Monona,Soldier,Soldier Fire Department,C67,19133
+Johnson,Solon,Solon Fire Department,C52,19103
+Clay,Spencer,Spencer Fire Department,C21,19041
+Dickinson,Spirit Lake,Spirit Lake Fire Department,C30,19059
+Jackson,Springbrook,Springbrook Fire Department,C49,19097
+Linn,Springville,Springville Fire Department,C57,19113
+Mitchell,Stacyville,Stacyville Fire Department,C66,19131
+Hamilton,Stanhope,Stanhope Fire Department,C40,19079
+Buchanan,Stanley,Stanley Fire Department,C10,19019
+Montgomery,Stanton,Stanton Fire Department,C69,19137
+Cedar,Stanwood,Stanwood Fire Department,C16,19031
+Marshall,State Center,State Center Fire Department,C64,19127
+Hardin,Steamboat Rock,Steamboat Rock Fire Department,C42,19083
+Van Buren,Stockport,Stockport Fire Department,C89,19177
+Van Buren,Stockport,Stockport Volunteer Fire Department,C89,19177
+Buena Vista,Storm Lake,Storm Lake Fire Department,C11,19021
+Story,Story City,Story City Fire Department,C85,19169
+Grundy,Stout,Stout Fire Department,C38,19075
+Hamilton,Stratford,Stratford Fire Department,C40,19079
+Clayton,Strawberry Point,Strawberry Point Fire Department,C22,19043
+Guthrie,Stuart,Stuart Fire Department,C39,19077
+Jasper,Sully,Sully Fire Department,C50,19099
+Bremer,Sumner,Sumner Fire Department,C09,19017
+Dickinson,Superior,Superior Fire Department,C30,19059
+O'Brien,Sutherland,Sutherland Fire Department,C71,19141
+Cerro Gordo,Swaledale,Swaledale Fire Department,C17,19033
+Kossuth,Swea City,Swea City Fire Department,C55,19109
+Fremont,Tabor,Tabor Fire Department,C36,19071
+Tama,Tama,Tama Fire Department,C86,19171
+Carroll,Templeton,Templeton Fire Department,C14,19027
+Dickinson,Terril,Terril Fire Department,C30,19059
+Winnebago,Thompson,Thompson Fire Department,C95,19189
+Humboldt,Thor-Norway Twp,Thor-Norway Twp Fire Department,C46,19091
+Cerro Gordo,Thornton,Thornton Fire Department,C17,19033
+Fremont,Thurman,Thurman Fire Department,C36,19071
+Johnson,Tiffin,Tiffin Fire Department,C52,19103
+Ringgold,Tingley,Tingley Fire Department,C80,19159
+Cedar,Tipton,Tipton Fire Department,C16,19031
+Kossuth,Titonka,Titonka Fire Department,C55,19109
+Tama,Toledo,Toledo Fire Department,C86,19171
+Tama,Traer,Traer Fire Department,C86,19171
+Pottawattamie,Treynor,Treynor Fire Department,C78,19155
+Bremer,Tripoli,Tripoli Fire Department,C09,19017
+Linn,Troy Mills,Troy Mills Fire Department,C57,19113
+Madison,Truro,Truro Fire Department,C61,19121
+Pottawattamie,Underwood,Underwood Fire Department,C78,19155
+Hardin,Union,Union Fire Department,C42,19083
+Ringgold,Union Twp,Union Twp Fire Department,C80,19159
+Benton,Urbana Polk Twp,Urbana Polk Twp Fire Department,C06,19011
+Polk,Urbandale,Urbandale Fire Department,C77,19153
+Monona,Ute,Ute Fire Department,C67,19133
+Crawford,Vail,Vail Fire Department,C24,19047
+Benton,Van Horne,Van Horne Fire Department,C06,19011
+Dallas,Van Meter,Van Meter Fire Department,C25,19049
+Decatur,Van Wert,Van Wert Fire Department,C27,19053
+Cerro Gordo,Ventura,Ventura Fire Department,C17,19033
+Iowa,Victor,Victor Fire Department,C48,19095
+Montgomery,Villisca,Villisca Fire Department,C69,19137
+Webster,Vincent,Vincent Fire Department,C94,19187
+Tama,Vining,Vining Fire Department,C86,19171
+Benton,Vinton,Vinton Fire Department,C06,19011
+Clayton,Volga,Volga Fire Department,C22,19043
+Fayette,Wadena-Illyria,Wadena-Illyria Fire Department,C33,19065
+Scott,Walcott,Walcott Fire Department,C82,19163
+Linn,Walker,Walker Fire Department,C57,19113
+Sac,Wall Lake,Wall Lake Fire Department,C81,19161
+Emmet,Wallingford,Wallingford Fire Department,C32,19063
+Pottawattamie,Walnut,Walnut Fire Department,C78,19155
+Wapello,Wapello Co Rural,Wapello Co Rural Fire Department,C90,19179
+Louisa,Wapello,Wapello Fire Department,C58,19115
+Washington,Washington,Washington Fire Department,C92,19183
+Cherokee,Washta,Washta Fire Department,C18,19035
+Black Hawk,Waterloo,Waterloo Fire Department,C07,19013
+Allamakee,Waterville,Waterville Fire Department,C03,19005
+Fayette,Waucoma,Waucoma Fire Department,C33,19065
+Dallas,Waukee,Waukee Fire Department,C25,19049
+Allamakee,Waukon,Waukon Fire Department,C03,19005
+Bremer,Waverly,Waverly Fire Department,C09,19017
+Henry,Wayland,Wayland Fire Department,C44,19087
+Clay,Webb,Webb Fire Department,C21,19041
+Hamilton,Webster City,Webster City Fire Department,C40,19079
+Decatur,Weldon,Weldon Fire Department,C27,19053
+Washington,Wellman,Wellman Fire Department,C92,19183
+Grundy,Wellsburg,Wellsburg Fire Department,C38,19075
+Clinton,Welton,Welton Fire Department,C23,19045
+Kossuth,Wesley,Wesley Fire Department,C55,19109
+Palo Alto,West Bend,West Bend Fire Department,C74,19147
+Linn,West Bertram Twp,West Bertram Twp Fire Department,C57,19113
+Cedar,West Branch,West Branch Fire Department,C16,19031
+Des Moines,West Burlington,West Burlington Fire Department,C29,19057
+Polk,West Des Moines,West Des Moines Fire Department,C77,19153
+Muscatine,West Liberty,West Liberty Fire Department,C70,19139
+Lee,West Point,West Point Fire Department,C56,19111
+Fayette,West Union,West Union Fire Department,C33,19065
+Fayette,Westgate,Westgate Fire Department,C33,19065
+Story,Westory-Kelley,Westory-Kelley Fire Department,C85,19169
+Shelby,Westphalia,Westphalia Fire Department,C83,19165
+Crawford,Westside,Westside Fire Department,C24,19047
+Lee,Wever,Wever Fire Department,C56,19111
+Keokuk,What Cheer,What Cheer Fire Department,C54,19107
+Clinton,Wheatland,Wheatland Fire Department,C23,19045
+Monona,Whiting,Whiting Fire Department,C67,19133
+Kossuth,Whittemore,Whittemore Fire Department,C55,19109
+Hardin,Whitten,Whitten Fire Department,C42,19083
+Hamilton,Williams,Williams Fire Department,C40,19079
+Iowa,Williamsburg,Williamsburg Fire Department,C48,19095
+Lucas,Williamson,Williamson Fire Department,C59,19117
+Muscatine,Wilton,Wilton Fire Department,C70,19139
+Polk,Windsor Heights,Windsor Heights Fire Department,C77,19153
+Henry,Winfield,Winfield Fire Department,C44,19087
+Madison,Winterset,Winterset Fire Department,C61,19121
+Buchanan,Winthrop,Winthrop Fire Department,C10,19019
+Cass,Wiota,Wiota Fire Department,C15,19029
+Hancock,Woden,Woden Fire Department,C41,19081
+Harrison,Woodbine,Woodbine Fire Department,C43,19085
+Clarke,Woodburn,Woodburn Fire Department,C20,19039
+Dallas,Woodward,Woodward Fire Department,C25,19049
+Wright,Woolstock,Woolstock Fire Department,C99,19197
+Dubuque,Worthington,Worthington Fire Department,C31,19061
+Jones,Wyoming,Wyoming Fire Department,C53,19105
+Guthrie,Yale,Yale Fire Department,C39,19077
+Des Moines,Yarmouth,Yarmouth Fire Department,C29,19057
+Story,Zearing,Zearing Fire Department,C85,19169
