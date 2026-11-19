@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>County Details — Iowa County Directory</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand">
+        <span class="brand-title">Iowa County Directory</span>
+        <span class="brand-subtitle">Emergency Services, Health Facilities &amp; 2024 Municipal Populations</span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="index.html">&larr; All 99 Counties</a>
+        <a href="#municipalities-section">Municipalities &amp; Pop. %</a>
+        <a href="#agencies-section">Departments &amp; Facilities</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero hero-compact">
+      <div class="container hero-detail-inner">
+        <div>
+          <p class="eyebrow" id="county-fips-label">FIPS —</p>
+          <h1 id="county-heading">Loading County...</h1>
+          <p class="hero-lead" id="county-subtitle">
+            2024 population breakdown, municipality population shares, and local emergency &amp; health agencies.
+          </p>
+        </div>
+
+        <div class="county-switcher">
+          <label for="county-select">Switch County:</label>
+          <select id="county-select" aria-label="Switch to another Iowa county">
+            <option value="">Select a county...</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <div class="container main-content">
+      <p id="county-loading" role="status">Loading county details...</p>
+
+      <!-- County Summary Metrics -->
+      <section aria-labelledby="county-summary-heading">
+        <h2 id="county-summary-heading">County Overview</h2>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <span class="stat-value" id="c-pop">—</span>
+            <span class="stat-label">Total 2024 County Pop.</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-value" id="c-muni-count">—</span>
+            <span class="stat-label">Municipalities</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-value" id="c-fire">—</span>
+            <span class="stat-label">Fire Departments</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-value" id="c-ems">—</span>
+            <span class="stat-label">EMS Agencies</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-value" id="c-le">—</span>
+            <span class="stat-label">Law Enforcement Agencies</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-value" id="c-hospitals">—</span>
+            <span class="stat-label">Hospitals</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-value" id="c-health">—</span>
+            <span class="stat-label">County Health Depts</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-value" id="c-treatment">—</span>
+            <span class="stat-label">Treatment Facilities</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Municipalities & Share of Total County Population -->
+      <section id="municipalities-section" aria-labelledby="muni-heading">
+        <div class="section-header">
+          <div>
+            <h2 id="muni-heading">Municipalities &amp; Share of County Population</h2>
+            <p id="muni-caption">
+              Percentage is calculated as (Municipality 2024 Estimate in County &divide; Total 2024 County Population) &times; 100.
+            </p>
+          </div>
+          <div class="controls">
+            <label for="muni-sort">Sort cities by:</label>
+            <select id="muni-sort">
+              <option value="pop-desc">Population / Share (High–Low)</option>
+              <option value="name-asc">City Name (A–Z)</option>
+              <option value="pop-asc">Population / Share (Low–High)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th scope="col">Municipality</th>
+                <th scope="col" class="num-col">2024 Pop. (in County)</th>
+                <th scope="col" class="num-col">% of County Pop.</th>
+                <th scope="col" class="bar-col">Share Visual</th>
+              </tr>
+            </thead>
+            <tbody id="muni-table-body"></tbody>
+            <tfoot id="muni-table-foot"></tfoot>
+          </table>
+        </div>
+      </section>
+
+      <!-- Emergency & Health Departments / Facilities -->
+      <section id="agencies-section" aria-labelledby="agencies-heading">
+        <h2 id="agencies-heading">Departments &amp; Facilities in This County</h2>
+        <div id="agency-sections" class="agency-grid"></div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p><a href="index.html">&larr; Back to All 99 Iowa Counties</a></p>
+      <p><a href="data/DataSources.csv">View DataSources.csv</a></p>
+    </div>
+  </footer>
+
+  <script>
+    window.IA_CONFIG = {
+      files: {
+        fips: "data/IACountyFIPS.csv",
+        population: "data/IACityCountyPopulation2024.csv",
+        fire: "data/FireDeptsByCounty.csv",
+        ems: "data/EMSByCounty.csv",
+        le: "data/LEAgenciesByCounty.csv",
+        health: "data/IACountyHealthDepts.csv",
+        hospitals: "data/IAHospitalsByCounty.csv",
+        treatment: "data/IATreatmentFacilities.csv"
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <script src="js/county.js"></script>
+</body>
+</html>
