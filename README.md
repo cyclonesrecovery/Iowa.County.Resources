@@ -18,6 +18,33 @@ https://cyclonesrecovery.github.io/Iowa.County.Resources/
 * **Geographic Boundaries**: County (`County.geojson`), municipal limit (`City_Limit_Boundaries_for_the_State_of_Iowa.geojson`), and township (`Political_Township.geojson`) boundary files.
 * **Source Attribution**: Reference links for underlying datasets in `DataSources.csv`.
 
+## Public Data Sources
+
+All underlying records come from publicly available sources listed in data/DataSources.csv, including:
+
+    Hospitals: Iowa Department of Health and Human Services (HHS)
+
+    EMS Agencies: Iowa Department of Public Health / AMANDA Portal
+
+    Fire Departments: Data.iowa.gov (Dataset 1294)
+
+    Law Enforcement Agencies: NACJD / ICPSR
+
+    Treatment Facilities: SAMHSA National Directory
+
+    City & County Population: Data.iowa.gov (Dataset 705, 2024 estimates)
+
+    County Health Departments: NACCHO Local Health Department Directory
+
+    PSAPS & FIPS Codes: FCC / U.S. Department of Transportation reference datasets
+
+Notes & Accuracy
+
+Because this directory aggregates existing public files, coverage, naming conventions, and reporting dates depend on each underlying source. Some datasets include out-of-state or unmapped entries (such as non-Iowa EMS rows or multi-county split cities marked (pt.)), which are filtered or handled carefully when aggregating county-level totals.
+Contributing & Feedback
+
+Spot a missing department, outdated link, or CSV formatting issue? Feel free to open an issue or submit a pull request with updated public source details.
+
 ## Repository Structure
 
 ```text
@@ -41,3 +68,4 @@ https://cyclonesrecovery.github.io/Iowa.County.Resources/
     ├── IAHospitalsByCounty.csv
     ├── IATreatmentFacilities.csv
     └── LEAgenciesByCounty.csv
+
