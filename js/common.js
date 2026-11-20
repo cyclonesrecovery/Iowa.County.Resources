@@ -30,15 +30,6 @@
     return Number(num || 0).toLocaleString("en-US");
   };
 
-  IA.formatCurrency = function (val) {
-    return IA.parseNumber(val).toLocaleString("en-US", {
-      style: "currency",
-      currency: "USD",
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2
-    });
-  };
-
   IA.escapeHtml = function (str) {
     return String(str ?? "")
       .replace(/&/g, "&amp;")
