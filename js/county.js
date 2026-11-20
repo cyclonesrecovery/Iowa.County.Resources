@@ -1,76 +1,19 @@
 (function () {
-  const CFG = window.IA_CONFIG || {
-    files: {
-      fips: "data/IACountyFIPS.csv",
-      population: "data/IACityCountyPopulation2024.csv",
-      fire: "data/FireDeptsByCounty.csv",
-      ems: "data/EMSByCounty.csv",
-      le: "data/LEAgenciesByCounty.csv",
-      health: "data/IACountyHealthDepts.csv",
-      hospitals: "data/IAHospitalsByCounty.csv",
-      treatment: "data/IATreatmentFacilities.csv",
-      opioidFunding: "data/2025OpioidSettlementFundingIowa.csv"
-    }
-  };
+  const CFG = window.IA_CONFIG;
+  const { normalizeFips, parseNumber, formatNumber, formatCurrency, escapeHtml, setText, loadCsvs } = window.IA;
 
   let currentCounty = null;
   let allMunicipalities = [];
   let balancePop = 0;
 
-  function normalizeFips(raw) {
-    if (raw === null || raw === undefined) return "";
-    const cleaned = String(raw).trim().replace(/\.0$/, "");
-    if (/^19\d{3}$/.test(cleaned)) return cleaned;
-    if (/^\d{1,3}$/.test(cleaned)) return `19${cleaned.padStart(3, "0")}`;
-    return "";
-  }
-
+  // Page-specific helpers
   function normalizeCountyName(raw) {
-    return String(raw || "")
-      .trim()
-      .replace(/\s+County$/i, "")
-      .toLowerCase();
-  }
-
-  function formatNumber(num) {
-    return Number(num || 0).toLocaleString("en-US");
-  }
-
-  function formatCurrency(val) {
-    const num = Number(String(val ?? "0").replace(/[$,]/g, ""));
-    if (!Number.isFinite(num)) return "$0.00";
-    return num.toLocaleString("en-US", {
-      style: "currency",
-      currency: "USD",
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2
-    });
+    return String(raw || "").trim().replace(/\s+County$/i, "").toLowerCase();
   }
 
   function formatPct(part, total) {
     if (!total || total <= 0) return "0.00%";
     return `${((part / total) * 100).toFixed(2)}%`;
-  }
-
-  function escapeHtml(str) {
-    return String(str ?? "")
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#39;");
-  }
-
-  function parseCsv(url) {
-    return new Promise((resolve, reject) => {
-      Papa.parse(url, {
-        download: true,
-        header: true,
-        skipEmptyLines: true,
-        complete: (results) => resolve(results.data || []),
-        error: (err) => reject(new Error(`Failed to load ${url}: ${err.message || err}`))
-      });
-    });
   }
 
   function filterByFips(rows, targetFips, fipsCol = "FIPS") {
@@ -81,29 +24,12 @@
     const statusEl = document.getElementById("county-loading");
 
     try {
-      const [
-        fipsRows,
-        popRows,
-        fireRows,
-        emsRows,
-        leRows,
-        healthRows,
-        hospitalRows,
-        treatmentRows,
-        opioidRows
-      ] = await Promise.all([
-        parseCsv(CFG.files.fips),
-        parseCsv(CFG.files.population),
-        parseCsv(CFG.files.fire),
-        parseCsv(CFG.files.ems),
-        parseCsv(CFG.files.le),
-        parseCsv(CFG.files.health),
-        parseCsv(CFG.files.hospitals),
-        parseCsv(CFG.files.treatment),
-        parseCsv(CFG.files.opioidFunding)
+      const d = await loadCsvs(CFG.files, [
+        "fips", "population", "fire", "ems", "le",
+        "health", "hospitals", "treatment", "opioidFunding"
       ]);
 
-      const counties = fipsRows
+      const counties = d.fips
         .map((r) => {
           const fips = normalizeFips(r["FIPS"]);
           if (!fips) return null;
@@ -134,64 +60,53 @@
       if (selectEl) selectEl.value = currentCounty.fips;
 
       document.title = `${currentCounty.fullName} — Iowa County Directory`;
-      document.getElementById("county-fips-label").textContent = `FIPS ${currentCounty.fips}`;
-      document.getElementById("county-heading").textContent = currentCounty.fullName;
+      setText("county-fips-label", `FIPS ${currentCounty.fips}`);
+      setText("county-heading", currentCounty.fullName);
 
       // Population rows for this county
-      const countyPopRows = popRows.filter(
-        (r) => normalizeFips(r["county_fips_code"]) === currentCounty.fips
-      );
-
       let totalCountyPop = 0;
       balancePop = 0;
       allMunicipalities = [];
 
-      for (const row of countyPopRows) {
+      for (const row of d.population) {
+        if (normalizeFips(row["county_fips_code"]) !== currentCounty.fips) continue;
+
         const cityName = String(row["city"] || "").trim();
-        const est = Number(String(row["estimate"] || "0").replace(/,/g, "")) || 0;
+        const est = parseNumber(row["estimate"]);
         totalCountyPop += est;
 
         if (/^Balance of /i.test(cityName)) {
           balancePop += est;
         } else if (cityName) {
-          allMunicipalities.push({
-            city: cityName,
-            pop: est
-          });
+          allMunicipalities.push({ city: cityName, pop: est });
         }
       }
 
-      // Filter agency & facility rows for this county
-      const fireList = filterByFips(fireRows, currentCounty.fips, "FIPS");
-      const emsList = filterByFips(emsRows, currentCounty.fips, "FIPS");
-      const leList = filterByFips(leRows, currentCounty.fips, "FIPS");
-      const healthList = filterByFips(healthRows, currentCounty.fips, "FIPS");
-      const hospitalList = filterByFips(hospitalRows, currentCounty.fips, "FIPS");
-      const treatmentList = filterByFips(treatmentRows, currentCounty.fips, "FIPS");
+      // Agency & facility rows for this county
+      const lists = {
+        fireList: filterByFips(d.fire, currentCounty.fips),
+        emsList: filterByFips(d.ems, currentCounty.fips),
+        leList: filterByFips(d.le, currentCounty.fips),
+        hospitalList: filterByFips(d.hospitals, currentCounty.fips),
+        healthList: filterByFips(d.health, currentCounty.fips),
+        treatmentList: filterByFips(d.treatment, currentCounty.fips)
+      };
 
-      // Populate top overview cards
+      // Overview cards
       setText("c-pop", formatNumber(totalCountyPop));
       setText("c-muni-count", formatNumber(allMunicipalities.length));
-      setText("c-fire", formatNumber(fireList.length));
-      setText("c-ems", formatNumber(emsList.length));
-      setText("c-le", formatNumber(leList.length));
-      setText("c-hospitals", formatNumber(hospitalList.length));
-      setText("c-health", formatNumber(healthList.length));
-      setText("c-treatment", formatNumber(treatmentList.length));
+      setText("c-fire", formatNumber(lists.fireList.length));
+      setText("c-ems", formatNumber(lists.emsList.length));
+      setText("c-le", formatNumber(lists.leList.length));
+      setText("c-hospitals", formatNumber(lists.hospitalList.length));
+      setText("c-health", formatNumber(lists.healthList.length));
+      setText("c-treatment", formatNumber(lists.treatmentList.length));
 
-      renderMunicipalities(totalCountyPop, "pop-desc", params.get("city") || "");
-      setupMuniSort(totalCountyPop, params.get("city") || "");
-
-      renderOpioidFunding(opioidRows, currentCounty);
-
-      renderAgencyGroups({
-        fireList,
-        emsList,
-        leList,
-        hospitalList,
-        healthList,
-        treatmentList
-      });
+      const highlightCity = params.get("city") || "";
+      renderMunicipalities(totalCountyPop, "pop-desc", highlightCity);
+      setupMuniSort(totalCountyPop, highlightCity);
+      renderOpioidFunding(d.opioidFunding, currentCounty);
+      renderAgencyGroups(lists);
 
       if (statusEl) statusEl.hidden = true;
     } catch (err) {
@@ -202,19 +117,12 @@
     }
   }
 
-  function setText(id, val) {
-    const el = document.getElementById(id);
-    if (el) el.textContent = val;
-  }
-
   function populateCountySwitcher(counties) {
     const select = document.getElementById("county-select");
     if (!select) return;
 
     select.innerHTML = counties
-      .map(
-        (c) => `<option value="${escapeHtml(c.fips)}">${escapeHtml(c.fullName)} (${c.fips})</option>`
-      )
+      .map((c) => `<option value="${escapeHtml(c.fips)}">${escapeHtml(c.fullName)} (${c.fips})</option>`)
       .join("");
 
     select.addEventListener("change", (e) => {
@@ -241,8 +149,7 @@
       .map((m) => {
         const pctNum = totalCountyPop > 0 ? (m.pop / totalCountyPop) * 100 : 0;
         const widthPct = Math.min(100, Math.max(0, pctNum));
-        const isHighlighted =
-          normHighlight && m.city.toLowerCase().includes(normHighlight);
+        const isHighlighted = normHighlight && m.city.toLowerCase().includes(normHighlight);
 
         return `
           <tr class="${isHighlighted ? "row-highlight" : ""}">
@@ -301,9 +208,7 @@
     const container = document.getElementById("opioid-funding-section");
     if (!container) return;
 
-    const match = opioidRows.find(
-      (r) => normalizeFips(r["FIPS"]) === county.fips
-    );
+    const match = opioidRows.find((r) => normalizeFips(r["FIPS"]) === county.fips);
 
     if (!match) {
       container.innerHTML = `
@@ -314,26 +219,19 @@
     }
 
     const activities = String(match["Funded Activities"] || "").trim();
+    const card = (field, label) => `
+        <div class="stat-card">
+          <span class="stat-value">${formatCurrency(match[field])}</span>
+          <span class="stat-label">${label}</span>
+        </div>`;
 
     container.innerHTML = `
       <h2 id="opioid-heading">2025 Opioid Settlement Funding</h2>
       <div class="stats-grid">
-        <div class="stat-card">
-          <span class="stat-value">${formatCurrency(match["Start Balance"])}</span>
-          <span class="stat-label">Start Balance</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-value">${formatCurrency(match["Funds Received"])}</span>
-          <span class="stat-label">Funds Received</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-value">${formatCurrency(match["Expenditures"])}</span>
-          <span class="stat-label">Expenditures</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-value">${formatCurrency(match["End Balance"])}</span>
-          <span class="stat-label">End Balance</span>
-        </div>
+        ${card("Start Balance", "Start Balance")}
+        ${card("Funds Received", "Funds Received")}
+        ${card("Expenditures", "Expenditures")}
+        ${card("End Balance", "End Balance")}
       </div>
       <div class="agency-card" style="margin-top: 1rem;">
         <h3>Funded Activities</h3>
@@ -356,39 +254,27 @@
     `;
   }
 
-  function renderAgencyGroups({
-    fireList,
-    emsList,
-    leList,
-    hospitalList,
-    healthList,
-    treatmentList
-  }) {
+  // "<strong>Name</strong> (City)" row used by most agency types
+  function nameWithCity(nameCol, cityCol, fallback) {
+    return (r) =>
+      `<strong>${escapeHtml(r[nameCol] || fallback)}</strong>` +
+      (r[cityCol] ? ` <span class="item-meta">(${escapeHtml(r[cityCol])})</span>` : "");
+  }
+
+  function renderAgencyGroups({ fireList, emsList, leList, hospitalList, healthList, treatmentList }) {
     const container = document.getElementById("agency-sections");
     if (!container) return;
 
     container.innerHTML = [
-      renderAgencyCard("Fire Departments", fireList, (r) =>
-        `<strong>${escapeHtml(r["Agency"] || "Unnamed Fire Dept")}</strong>` +
-        (r["City"] ? ` <span class="item-meta">(${escapeHtml(r["City"])})</span>` : "")
-      ),
-      renderAgencyCard("EMS Agencies", emsList, (r) =>
-        `<strong>${escapeHtml(r["Name"] || "Unnamed EMS Agency")}</strong>` +
-        (r["City"] ? ` <span class="item-meta">(${escapeHtml(r["City"])})</span>` : "")
-      ),
-      renderAgencyCard("Law Enforcement Agencies", leList, (r) =>
-        `<strong>${escapeHtml(r["AGENCYNAME"] || "Unnamed Agency")}</strong>` +
-        (r["CITY"] ? ` <span class="item-meta">(${escapeHtml(r["CITY"])})</span>` : "")
-      ),
-      renderAgencyCard("Hospitals", hospitalList, (r) =>
-        `<strong>${escapeHtml(r["Hospital"] || "Unnamed Hospital")}</strong>` +
-        (r["City"] ? ` <span class="item-meta">(${escapeHtml(r["City"])})</span>` : "")
-      ),
+      renderAgencyCard("Fire Departments", fireList, nameWithCity("Agency", "City", "Unnamed Fire Dept")),
+      renderAgencyCard("EMS Agencies", emsList, nameWithCity("Name", "City", "Unnamed EMS Agency")),
+      renderAgencyCard("Law Enforcement Agencies", leList, nameWithCity("AGENCYNAME", "CITY", "Unnamed Agency")),
+      renderAgencyCard("Hospitals", hospitalList, nameWithCity("Hospital", "City", "Unnamed Hospital")),
       renderAgencyCard("County Health Departments", healthList, (r) =>
         `<strong>${escapeHtml(r["Agency"] || "County Health Dept")}</strong>`
       ),
       renderAgencyCard("Treatment Facilities", treatmentList, (r) => {
-        const name = r["name2"] ? `${r["name1"]} — ${r["name2"]}` : r["name1"];
+        const name = [r["name1"], r["name2"]].filter(Boolean).join(" — ");
         const loc = [r["city"], r["zip"]].filter(Boolean).join(" ");
         return (
           `<strong>${escapeHtml(name || "Treatment Facility")}</strong>` +
