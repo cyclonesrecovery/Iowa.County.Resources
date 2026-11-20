@@ -3,14 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Iowa Counties Directory — Emergency Services, Healthcare &amp; 2024 Populations</title>
+  <title>County Details — Iowa County Directory</title>
   <link rel="stylesheet" href="css/styles.css" />
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-    crossorigin=""
-  />
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to main content</a>
@@ -22,131 +16,128 @@
         <span class="brand-subtitle">Emergency Services, Health Facilities &amp; 2024 Municipal Populations</span>
       </a>
       <nav aria-label="Primary navigation">
-        <a href="index.html" aria-current="page">All 99 Counties</a>
-        <a href="#map-section">County Map</a>
-        <a href="#statewide-stats">Statewide Totals</a>
-        <a href="#data-sources">Data Sources</a>
+        <a href="index.html">&larr; All 99 Counties</a>
+        <a href="#municipalities-section">Municipalities &amp; Pop. %</a>
+        <a href="#agencies-section">Departments &amp; Facilities</a>
       </nav>
     </div>
   </header>
 
   <main id="main">
-    <section class="hero">
-      <div class="container">
-        <h1>Iowa Counties &amp; Municipal Directory</h1>
-        <p class="hero-lead">
-          Browse all 99 Iowa counties for Fire, EMS, and Law Enforcement counts, healthcare facilities, and each city's share of total county population (2024 estimates).
-        </p>
+    <section class="hero hero-compact">
+      <div class="container hero-detail-inner">
+        <div>
+          <p class="eyebrow" id="county-fips-label">FIPS —</p>
+          <h1 id="county-heading">Loading County...</h1>
+          <p class="hero-lead" id="county-subtitle">
+            2024 population breakdown, municipality population shares, and local emergency &amp; health agencies.
+          </p>
+        </div>
 
-        <div class="search-box" role="search">
-          <label for="county-search" class="sr-only">Search by county, FIPS code, or city name</label>
-          <input
-            type="search"
-            id="county-search"
-            placeholder="Search by county (e.g., Story), FIPS (19169), or city (e.g., Ames)..."
-            autocomplete="off"
-          />
-          <ul id="search-results" class="search-dropdown" aria-label="Matching counties and cities" hidden></ul>
+        <div class="county-switcher">
+          <label for="county-select">Switch County:</label>
+          <select id="county-select" aria-label="Switch to another Iowa county">
+            <option value="">Select a county...</option>
+          </select>
         </div>
       </div>
     </section>
 
     <div class="container main-content">
-      <section id="statewide-stats" aria-labelledby="stats-heading">
-        <h2 id="stats-heading">Iowa at a Glance</h2>
+      <p id="county-loading" role="status">Loading county details...</p>
+
+      <!-- County Summary Metrics -->
+      <section aria-labelledby="county-summary-heading">
+        <h2 id="county-summary-heading">County Overview</h2>
         <div class="stats-grid">
           <div class="stat-card">
-            <span class="stat-value" id="stat-counties">99</span>
-            <span class="stat-label">Counties</span>
+            <span class="stat-value" id="c-pop">—</span>
+            <span class="stat-label">Total 2024 County Pop.</span>
           </div>
           <div class="stat-card">
-            <span class="stat-value" id="stat-fire">—</span>
+            <span class="stat-value" id="c-muni-count">—</span>
+            <span class="stat-label">Municipalities</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-value" id="c-fire">—</span>
             <span class="stat-label">Fire Departments</span>
           </div>
           <div class="stat-card">
-            <span class="stat-value" id="stat-ems">—</span>
+            <span class="stat-value" id="c-ems">—</span>
             <span class="stat-label">EMS Agencies</span>
           </div>
           <div class="stat-card">
-            <span class="stat-value" id="stat-le">—</span>
+            <span class="stat-value" id="c-le">—</span>
             <span class="stat-label">Law Enforcement Agencies</span>
           </div>
           <div class="stat-card">
-            <span class="stat-value" id="stat-hospitals">—</span>
+            <span class="stat-value" id="c-hospitals">—</span>
             <span class="stat-label">Hospitals</span>
           </div>
           <div class="stat-card">
-            <span class="stat-value" id="stat-health">—</span>
+            <span class="stat-value" id="c-health">—</span>
             <span class="stat-label">County Health Depts</span>
           </div>
           <div class="stat-card">
-            <span class="stat-value" id="stat-treatment">—</span>
+            <span class="stat-value" id="c-treatment">—</span>
             <span class="stat-label">Treatment Facilities</span>
           </div>
-          <div class="stat-card">
-            <span class="stat-value" id="stat-cities">—</span>
-            <span class="stat-label">Municipalities (2024)</span>
-          </div>
+         
         </div>
       </section>
-
-      <section id="map-section" aria-labelledby="map-heading">
+      <!-- Municipalities & Share of Total County Population -->
+      <section id="municipalities-section" aria-labelledby="muni-heading">
         <div class="section-header">
           <div>
-            <h2 id="map-heading">Interactive Iowa County Map</h2>
-            <p>Click a county to view its department counts and municipal population percentages.</p>
+            <h2 id="muni-heading">Municipalities &amp; Share of County Population</h2>
+            <p id="muni-caption">
+              Percentage is calculated as (Municipality 2024 Estimate in County &divide; Total 2024 County Population) &times; 100.
+            </p>
           </div>
-        </div>
-        <div id="iowa-map" class="map-container" role="region" aria-label="Interactive map of Iowa counties"></div>
-      </section>
-
-      <section aria-labelledby="counties-heading">
-        <div class="section-header">
-          <div>
-            <h2 id="counties-heading">Browse All 99 Counties</h2>
-            <p>Select any county to open its full breakdown of Fire, EMS, Police, health facilities, and city population shares.</p>
-          </div>
-
           <div class="controls">
-            <label for="sort-select">Sort by:</label>
-            <select id="sort-select">
-              <option value="name-asc">County Name (A–Z)</option>
-              <option value="pop-desc">2024 County Population (High–Low)</option>
-              <option value="fire-desc">Fire Departments (High–Low)</option>
-              <option value="ems-desc">EMS Agencies (High–Low)</option>
-              <option value="le-desc">Law Enforcement Agencies (High–Low)</option>
-              <option value="hospitals-desc">Hospitals (High–Low)</option>
+            <label for="muni-sort">Sort cities by:</label>
+            <select id="muni-sort">
+              <option value="pop-desc">Population / Share (High–Low)</option>
+              <option value="name-asc">City Name (A–Z)</option>
+              <option value="pop-asc">Population / Share (Low–High)</option>
             </select>
           </div>
         </div>
 
-        <p id="loading-status" role="status">Loading Iowa datasets...</p>
-        <div id="county-grid" class="county-grid"></div>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th scope="col">Municipality</th>
+                <th scope="col" class="num-col">2024 Pop. (in County)</th>
+                <th scope="col" class="num-col">% of County Pop.</th>
+                <th scope="col" class="bar-col">Share Visual</th>
+              </tr>
+            </thead>
+            <tbody id="muni-table-body"></tbody>
+            <tfoot id="muni-table-foot"></tfoot>
+          </table>
+        </div>
       </section>
 
-      <section id="data-sources" aria-labelledby="sources-heading">
-        <h2 id="sources-heading">Data Sources</h2>
-        <div id="sources-list" class="sources-list"></div>
+      <!-- Emergency & Health Departments / Facilities -->
+      <section id="agencies-section" aria-labelledby="agencies-heading">
+        <h2 id="agencies-heading">Departments &amp; Facilities in This County</h2>
+        <div id="agency-sections" class="agency-grid"></div>
       </section>
     </div>
   </main>
 
   <footer class="site-footer">
     <div class="container footer-inner">
-      <p>Iowa County Directory &bull; Powered by repository CSV &amp; GeoJSON datasets</p>
+      <p><a href="index.html">&larr; Back to All 99 Iowa Counties</a></p>
       <p><a href="data/DataSources.csv">View DataSources.csv</a></p>
     </div>
   </footer>
 
-
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
-  <script
-    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-    crossorigin=""
-  ></script>
   <script src="js/config.js"></script>
   <script src="js/common.js"></script>
-  <script src="js/index.js"></script>
+  <script src="js/county.js"></script>
 </body>
 </html>
