@@ -1,6 +1,6 @@
 (function () {
   const CFG = window.IA_CONFIG;
-  const { normalizeFips, parseNumber, formatNumber, formatCurrency, escapeHtml, safeUrl, setText, loadCsvs } = window.IA;
+  const { normalizeFips, parseNumber, formatNumber, escapeHtml, safeUrl, setText, loadCsvs } = window.IA;
 
   const state = {
     counties: [],          // Array of 99 county summary objects
@@ -28,7 +28,7 @@
     try {
       const d = await loadCsvs(CFG.files, [
         "fips", "population", "fire", "ems", "le",
-        "health", "hospitals", "treatment", "opioidFunding", "sources"
+        "health", "hospitals", "treatment", "sources"
       ]);
 
       // 1. Initialize master 99-county lookup strictly by FIPS
@@ -42,8 +42,7 @@
         const record = {
           fips, shortName, fullName,
           population: 0, municipalityCount: 0,
-          fire: 0, ems: 0, le: 0, health: 0, hospitals: 0, treatment: 0,
-          opioidSpent: 0
+          fire: 0, ems: 0, le: 0, health: 0, hospitals: 0, treatment: 0
         };
 
         state.counties.push(record);
@@ -94,26 +93,7 @@
         }
       }
 
-      // 4. Attach 2025 Opioid Settlement Expenditures strictly by FIPS
-      let opioidMatched = 0;
-      for (const row of d.opioidFunding) {
-        const county = state.countyByFips.get(normalizeFips(row["FIPS"]));
-        if (!county) continue; // ignores total/statewide rows without a valid county FIPS
-        county.opioidSpent = parseNumber(row["Expenditures"]);
-        opioidMatched += 1;
-      }
-      const opioidNonZero = state.counties.filter((c) => c.opioidSpent > 0).length;
-      console.info(
-        `Opioid data: ${d.opioidFunding.length} rows, ${opioidMatched} matched a county, ${opioidNonZero} counties with spending > 0.`
-      );
-      if (opioidMatched === 0 || opioidNonZero === 0) {
-        console.warn(
-          "Opioid data check. Headers:", JSON.stringify(Object.keys(d.opioidFunding[0] || {})),
-          "First row:", JSON.stringify(d.opioidFunding[0] || {})
-        );
-      }
-
-      // 5. Populate Statewide Summary Cards
+      // 4. Populate Statewide Summary Cards
       const setStat = (id, value) => setText(id, formatNumber(value));
       setStat("stat-counties", state.counties.length);
       setStat("stat-fire", agg.fire.validTotal);
@@ -124,7 +104,7 @@
       setStat("stat-treatment", agg.treatment.validTotal);
       setStat("stat-cities", uniquePlaceFips.size || state.cityIndex.length);
 
-      // 6. Render UI components
+      // 5. Render UI components
       if (statusEl) statusEl.hidden = true;
       renderCountyGrid("name-asc");
       renderSources(d.sources);
@@ -358,8 +338,7 @@
           featureLayer.bindTooltip(
             `<strong>${escapeHtml(county.fullName)}</strong><br>` +
               `2024 Pop: ${formatNumber(county.population)}<br>` +
-              `Fire: ${county.fire} &bull; EMS: ${county.ems} &bull; Law Enf.: ${county.le}<br>` +
-              `2025 Opioid Funds Spent: <strong>${formatCurrency(county.opioidSpent)}</strong>`,
+              `Fire: ${county.fire} &bull; EMS: ${county.ems} &bull; Law Enf.: ${county.le}`,
             { sticky: true }
           );
 
