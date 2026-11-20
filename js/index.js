@@ -427,7 +427,8 @@
           featureLayer.bindTooltip(
             `<strong>${escapeHtml(county.fullName)}</strong><br>` +
               `2024 Pop: ${formatNumber(county.population)}<br>` +
-              `Fire: ${county.fire} &bull; EMS: ${county.ems} &bull; Law Enf.: ${county.le}`,
+              `Fire: ${county.fire} &bull; EMS: ${county.ems} &bull; Law Enf.: ${county.le}`, +
+              `2025 Opioid Funds Spent: <strong>${formatCurrency(county.opioidSpent)}</strong>`,
             { sticky: true }
           );
 
