@@ -9,6 +9,7 @@
       health: "data/IACountyHealthDepts.csv",
       hospitals: "data/IAHospitalsByCounty.csv",
       treatment: "data/IATreatmentFacilities.csv",
+      opioidFunding: "data/2025OpioidSettlementFundingIowa.csv",
       sources: "data/DataSources.csv",
       countyGeoJson: "County.geojson"
     }
@@ -86,6 +87,7 @@
         healthRows,
         hospitalRows,
         treatmentRows,
+        opioidrows,
         sourceRows
       ] = await Promise.all([
         parseCsv(CFG.files.fips),
@@ -96,6 +98,7 @@
         parseCsv(CFG.files.health),
         parseCsv(CFG.files.hospitals),
         parseCsv(CFG.files.treatment),
+        parseCsv(CFG.files.opioidFunding),
         parseCsv(CFG.files.sources)
       ]);
 
@@ -451,6 +454,15 @@
       mapEl.innerHTML = `<p style="padding:1rem;color:#475569;">Could not load ${escapeHtml(CFG.files.countyGeoJson)}.</p>`;
     }
   }
+function formatCurrency(val) {
+  const num = Number(String(val ?? "0").replace(/[$,]/g, ""));
+  if (!Number.isFinite(num)) return "$0.00";
+  return num.toLocaleString("en-US", {
+    style: "currency",
+    currency: "USD",
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  });
 
   document.addEventListener("DOMContentLoaded", init);
 })();
