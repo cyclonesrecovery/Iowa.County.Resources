@@ -10,7 +10,6 @@ window.IA_CONFIG = {
     health: "data/IACountyHealthDepts.csv",
     hospitals: "data/IAHospitalsByCounty.csv",
     treatment: "data/IATreatmentFacilities.csv",
-    opioidFunding: "data/2025OpioidSettlementFundingIowa.csv",
     sources: "data/DataSources.csv",
     countyGeoJson: "County.geojson"
   }
