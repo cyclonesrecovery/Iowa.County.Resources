@@ -1,70 +1,12 @@
 (function () {
-  const CFG = window.IA_CONFIG || {
-    files: {
-      fips: "data/IACountyFIPS.csv",
-      population: "data/IACityCountyPopulation2024.csv",
-      fire: "data/FireDeptsByCounty.csv",
-      ems: "data/EMSByCounty.csv",
-      le: "data/LEAgenciesByCounty.csv",
-      health: "data/IACountyHealthDepts.csv",
-      hospitals: "data/IAHospitalsByCounty.csv",
-      treatment: "data/IATreatmentFacilities.csv",
-      opioidFunding: "data/2025OpioidSettlementFundingIowa.csv",
-      sources: "data/DataSources.csv",
-      countyGeoJson: "County.geojson"
-    }
-  };
+  const CFG = window.IA_CONFIG;
+  const { normalizeFips, parseNumber, formatNumber, formatCurrency, escapeHtml, safeUrl, setText, loadCsvs } = window.IA;
 
   const state = {
     counties: [],          // Array of 99 county summary objects
     countyByFips: new Map(),
     cityIndex: []          // Array of { city, cleanCity, fips, countyName, pop }
   };
-
-  function normalizeFips(raw) {
-    if (raw === null || raw === undefined) return "";
-    const cleaned = String(raw).trim().replace(/\.0$/, "");
-    if (/^19\d{3}$/.test(cleaned)) return cleaned;
-    // Handle 1-to-3 digit county-only codes (e.g., "1" or "169" -> "19001" or "19169")
-    if (/^\d{1,3}$/.test(cleaned)) return `19${cleaned.padStart(3, "0")}`;
-    return "";
-  }
-
-  function formatNumber(num) {
-    return Number(num || 0).toLocaleString("en-US");
-  }
-
-  function formatCurrency(val) {
-    const num = Number(String(val ?? "0").replace(/[$,]/g, ""));
-    if (!Number.isFinite(num)) return "$0.00";
-    return num.toLocaleString("en-US", {
-      style: "currency",
-      currency: "USD",
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2
-    });
-  }
-
-  function escapeHtml(str) {
-    return String(str ?? "")
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#39;");
-  }
-
-  function parseCsv(url) {
-    return new Promise((resolve, reject) => {
-      Papa.parse(url, {
-        download: true,
-        header: true,
-        skipEmptyLines: true,
-        complete: (results) => resolve(results.data || []),
-        error: (err) => reject(new Error(`Failed to load ${url}: ${err.message || err}`))
-      });
-    });
-  }
 
   function countByFips(rows, fipsCol = "FIPS") {
     const counts = new Map();
@@ -84,32 +26,13 @@
     const statusEl = document.getElementById("loading-status");
 
     try {
-      const [
-        fipsRows,
-        popRows,
-        fireRows,
-        emsRows,
-        leRows,
-        healthRows,
-        hospitalRows,
-        treatmentRows,
-        opioidRows,
-        sourceRows
-      ] = await Promise.all([
-        parseCsv(CFG.files.fips),
-        parseCsv(CFG.files.population),
-        parseCsv(CFG.files.fire),
-        parseCsv(CFG.files.ems),
-        parseCsv(CFG.files.le),
-        parseCsv(CFG.files.health),
-        parseCsv(CFG.files.hospitals),
-        parseCsv(CFG.files.treatment),
-        parseCsv(CFG.files.opioidFunding),
-        parseCsv(CFG.files.sources)
+      const d = await loadCsvs(CFG.files, [
+        "fips", "population", "fire", "ems", "le",
+        "health", "hospitals", "treatment", "opioidFunding", "sources"
       ]);
 
       // 1. Initialize master 99-county lookup strictly by FIPS
-      for (const row of fipsRows) {
+      for (const row of d.fips) {
         const fips = normalizeFips(row["FIPS"]);
         if (!fips) continue;
 
@@ -117,17 +40,9 @@
         const fullName = String(row["County"] || `${shortName} County`).trim();
 
         const record = {
-          fips,
-          shortName,
-          fullName,
-          population: 0,
-          municipalityCount: 0,
-          fire: 0,
-          ems: 0,
-          le: 0,
-          health: 0,
-          hospitals: 0,
-          treatment: 0,
+          fips, shortName, fullName,
+          population: 0, municipalityCount: 0,
+          fire: 0, ems: 0, le: 0, health: 0, hospitals: 0, treatment: 0,
           opioidSpent: 0
         };
 
@@ -138,13 +53,13 @@
       // 2. Process 2024 City & County Populations by county_fips_code
       const uniquePlaceFips = new Set();
 
-      for (const row of popRows) {
+      for (const row of d.population) {
         const fips = normalizeFips(row["county_fips_code"]);
         const county = state.countyByFips.get(fips);
         if (!county) continue;
 
         const cityRaw = String(row["city"] || "").trim();
-        const estimate = Number(String(row["estimate"] || "0").replace(/,/g, "")) || 0;
+        const estimate = parseNumber(row["estimate"]);
 
         county.population += estimate;
 
@@ -164,45 +79,43 @@
       }
 
       // 3. Aggregate department & facility counts strictly by FIPS
-      const fireAgg = countByFips(fireRows, "FIPS");
-      const emsAgg = countByFips(emsRows, "FIPS");
-      const leAgg = countByFips(leRows, "FIPS");
-      const healthAgg = countByFips(healthRows, "FIPS");
-      const hospitalAgg = countByFips(hospitalRows, "FIPS");
-      const treatmentAgg = countByFips(treatmentRows, "FIPS");
+      const agg = {
+        fire: countByFips(d.fire),
+        ems: countByFips(d.ems),
+        le: countByFips(d.le),
+        health: countByFips(d.health),
+        hospitals: countByFips(d.hospitals),
+        treatment: countByFips(d.treatment)
+      };
 
       for (const county of state.counties) {
-        county.fire = fireAgg.counts.get(county.fips) || 0;
-        county.ems = emsAgg.counts.get(county.fips) || 0;
-        county.le = leAgg.counts.get(county.fips) || 0;
-        county.health = healthAgg.counts.get(county.fips) || 0;
-        county.hospitals = hospitalAgg.counts.get(county.fips) || 0;
-        county.treatment = treatmentAgg.counts.get(county.fips) || 0;
+        for (const key of Object.keys(agg)) {
+          county[key] = agg[key].counts.get(county.fips) || 0;
+        }
       }
 
       // 4. Attach 2025 Opioid Settlement Expenditures strictly by FIPS
-      for (const row of opioidRows) {
-        const fips = normalizeFips(row["FIPS"]);
-        const county = state.countyByFips.get(fips);
-        if (!county) continue; // Automatically ignores any total/statewide row without a valid county FIPS
-
-        county.opioidSpent = Number(String(row["Expenditures"] || "0").replace(/[$,]/g, "")) || 0;
+      for (const row of d.opioidFunding) {
+        const county = state.countyByFips.get(normalizeFips(row["FIPS"]));
+        if (!county) continue; // ignores total/statewide rows without a valid county FIPS
+        county.opioidSpent = parseNumber(row["Expenditures"]);
       }
 
       // 5. Populate Statewide Summary Cards
+      const setStat = (id, value) => setText(id, formatNumber(value));
       setStat("stat-counties", state.counties.length);
-      setStat("stat-fire", fireAgg.validTotal);
-      setStat("stat-ems", emsAgg.validTotal);
-      setStat("stat-le", leAgg.validTotal);
-      setStat("stat-hospitals", hospitalAgg.validTotal);
-      setStat("stat-health", healthAgg.validTotal);
-      setStat("stat-treatment", treatmentAgg.validTotal);
+      setStat("stat-fire", agg.fire.validTotal);
+      setStat("stat-ems", agg.ems.validTotal);
+      setStat("stat-le", agg.le.validTotal);
+      setStat("stat-hospitals", agg.hospitals.validTotal);
+      setStat("stat-health", agg.health.validTotal);
+      setStat("stat-treatment", agg.treatment.validTotal);
       setStat("stat-cities", uniquePlaceFips.size || state.cityIndex.length);
 
       // 6. Render UI components
       if (statusEl) statusEl.hidden = true;
       renderCountyGrid("name-asc");
-      renderSources(sourceRows);
+      renderSources(d.sources);
       setupSorting();
       setupSearch();
       await initCountyMap();
@@ -214,27 +127,25 @@
     }
   }
 
-  function setStat(id, value) {
-    const el = document.getElementById(id);
-    if (el) el.textContent = formatNumber(value);
-  }
-
   function sortCounties(mode) {
     const list = [...state.counties];
+    const byName = (a, b) => a.shortName.localeCompare(b.shortName);
+    const desc = (key) => (a, b) => b[key] - a[key] || byName(a, b);
+
     switch (mode) {
       case "pop-desc":
-        return list.sort((a, b) => b.population - a.population || a.shortName.localeCompare(b.shortName));
+        return list.sort(desc("population"));
       case "fire-desc":
-        return list.sort((a, b) => b.fire - a.fire || a.shortName.localeCompare(b.shortName));
+        return list.sort(desc("fire"));
       case "ems-desc":
-        return list.sort((a, b) => b.ems - a.ems || a.shortName.localeCompare(b.shortName));
+        return list.sort(desc("ems"));
       case "le-desc":
-        return list.sort((a, b) => b.le - a.le || a.shortName.localeCompare(b.shortName));
+        return list.sort(desc("le"));
       case "hospitals-desc":
-        return list.sort((a, b) => b.hospitals - a.hospitals || a.shortName.localeCompare(b.shortName));
+        return list.sort(desc("hospitals"));
       case "name-asc":
       default:
-        return list.sort((a, b) => a.shortName.localeCompare(b.shortName));
+        return list.sort(byName);
     }
   }
 
@@ -242,8 +153,7 @@
     const grid = document.getElementById("county-grid");
     if (!grid) return;
 
-    const sorted = sortCounties(sortMode);
-    grid.innerHTML = sorted
+    grid.innerHTML = sortCounties(sortMode)
       .map(
         (c) => `
         <a href="county.html?fips=${encodeURIComponent(c.fips)}" class="county-card">
@@ -323,7 +233,7 @@
           .map(
             (m) => `
             <li>
-              <a href="${m.href}">
+              <a href="${escapeHtml(m.href)}">
                 <span>${escapeHtml(m.label)}</span>
                 <span style="color:#64748b;font-size:0.85rem;">${escapeHtml(m.meta)}</span>
               </a>
@@ -348,12 +258,13 @@
     if (!container) return;
 
     container.innerHTML = rows
-      .filter((r) => r["Source"] && r["Link"])
+      .map((r) => ({ name: String(r["Source"] || "").trim(), href: safeUrl(r["Link"]) }))
+      .filter((r) => r.name && r.href)
       .map(
         (r) => `
         <div class="source-item">
-          <a href="${escapeHtml(r["Link"].trim())}" target="_blank" rel="noopener noreferrer">
-            ${escapeHtml(r["Source"].trim())} &nearr;
+          <a href="${escapeHtml(r.href)}" target="_blank" rel="noopener noreferrer">
+            ${escapeHtml(r.name)} &nearr;
           </a>
         </div>
       `
@@ -362,23 +273,17 @@
   }
 
   function matchCountyFromGeoFeature(props = {}) {
-    const fipsCandidates = [
-      props.FIPS,
-      props.fips,
-      props.GEOID,
-      props.geoid,
-      props.COUNTYFP,
-      props.countyfp,
-      props.FIPS_INT
+    const candidates = [
+      props.FIPS, props.fips, props.GEOID, props.geoid,
+      props.COUNTYFP, props.countyfp, props.FIPS_INT
     ];
 
-    for (const cand of fipsCandidates) {
+    for (const cand of candidates) {
       const fips = normalizeFips(cand);
       if (fips && state.countyByFips.has(fips)) {
         return state.countyByFips.get(fips);
       }
     }
-
     return null;
   }
 
@@ -398,19 +303,8 @@
         attribution: "&copy; OpenStreetMap contributors"
       }).addTo(map);
 
-      const defaultStyle = {
-        color: "#1e3a8a",
-        weight: 1.25,
-        fillColor: "#3b82f6",
-        fillOpacity: 0.22
-      };
-
-      const hoverStyle = {
-        weight: 2.5,
-        color: "#1d4ed8",
-        fillColor: "#2563eb",
-        fillOpacity: 0.45
-      };
+      const defaultStyle = { color: "#1e3a8a", weight: 1.25, fillColor: "#3b82f6", fillOpacity: 0.22 };
+      const hoverStyle = { weight: 2.5, color: "#1d4ed8", fillColor: "#2563eb", fillOpacity: 0.45 };
 
       const layer = L.geoJSON(geojson, {
         style: () => defaultStyle,
@@ -431,9 +325,7 @@
               e.target.setStyle(hoverStyle);
               e.target.bringToFront();
             },
-            mouseout: (e) => {
-              layer.resetStyle(e.target);
-            },
+            mouseout: (e) => layer.resetStyle(e.target),
             click: () => {
               window.location.href = `county.html?fips=${encodeURIComponent(county.fips)}`;
             }
