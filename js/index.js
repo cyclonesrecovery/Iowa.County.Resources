@@ -273,16 +273,26 @@
   }
 
   function matchCountyFromGeoFeature(props = {}) {
-    const candidates = [
-      props.FIPS, props.fips, props.GEOID, props.geoid,
-      props.COUNTYFP, props.countyfp, props.FIPS_INT
-    ];
-
-    for (const cand of candidates) {
-      const fips = normalizeFips(cand);
-      if (fips && state.countyByFips.has(fips)) {
-        return state.countyByFips.get(fips);
+    // 1) Any property that looks like a FIPS/GEOID field. Require a full 19xxx code
+    //    so a state-level value like "19" can't be padded into Benton.
+    for (const [key, val] of Object.entries(props)) {
+      if (/fips|geoid/i.test(key)) {
+        const fips = normalizeFips(val, { allowShort: false });
+        if (fips && state.countyByFips.has(fips)) return state.countyByFips.get(fips);
       }
+      // County-only codes like COUNTYFP = "001" are the one place padding is right.
+      if (/^countyfp$/i.test(key)) {
+        const fips = normalizeFips(val);
+        if (fips && state.countyByFips.has(fips)) return state.countyByFips.get(fips);
+      }
+    }
+
+    // 2) Fall back to the county name.
+    for (const [key, val] of Object.entries(props)) {
+      if (!/^(name|county|countyname|county_name|namelsad)$/i.test(key)) continue;
+      const name = String(val || "").trim().replace(/\s+County$/i, "").toLowerCase();
+      const hit = state.counties.find((c) => c.shortName.toLowerCase() === name);
+      if (hit) return hit;
     }
     return null;
   }
@@ -306,11 +316,18 @@
       const defaultStyle = { color: "#1e3a8a", weight: 1.25, fillColor: "#3b82f6", fillOpacity: 0.22 };
       const hoverStyle = { weight: 2.5, color: "#1d4ed8", fillColor: "#2563eb", fillOpacity: 0.45 };
 
+      let matched = 0;
+      const unmatched = [];
+
       const layer = L.geoJSON(geojson, {
         style: () => defaultStyle,
         onEachFeature: (feature, featureLayer) => {
           const county = matchCountyFromGeoFeature(feature.properties);
-          if (!county) return;
+          if (!county) {
+            unmatched.push(feature.properties);
+            return;
+          }
+          matched += 1;
 
           featureLayer.bindTooltip(
             `<strong>${escapeHtml(county.fullName)}</strong><br>` +
@@ -332,6 +349,11 @@
           });
         }
       }).addTo(map);
+
+      console.info(`County map: ${matched} of ${geojson.features.length} features matched a county.`);
+      if (unmatched.length) {
+        console.warn("County map: unmatched feature properties (first 3):", JSON.stringify(unmatched.slice(0, 3)));
+      }
 
       if (layer.getBounds().isValid()) {
         map.fitBounds(layer.getBounds(), { padding: [12, 12] });
