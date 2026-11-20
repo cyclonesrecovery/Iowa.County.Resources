@@ -66,6 +66,7 @@
         download: true,
         header: true,
         skipEmptyLines: true,
+        transformHeader: (h) => String(h).replace(/^\uFEFF/, "").trim(),
         complete: (results) => resolve(results.data || []),
         error: (err) => reject(new Error(`Failed to load ${url}: ${err.message || err}`))
       });
