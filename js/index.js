@@ -39,6 +39,17 @@
     return Number(num || 0).toLocaleString("en-US");
   }
 
+  function formatCurrency(val) {
+    const num = Number(String(val ?? "0").replace(/[$,]/g, ""));
+    if (!Number.isFinite(num)) return "$0.00";
+    return num.toLocaleString("en-US", {
+      style: "currency",
+      currency: "USD",
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
+  }
+
   function escapeHtml(str) {
     return String(str ?? "")
       .replace(/&/g, "&amp;")
@@ -87,7 +98,7 @@
         healthRows,
         hospitalRows,
         treatmentRows,
-        opioidrows,
+        opioidRows,
         sourceRows
       ] = await Promise.all([
         parseCsv(CFG.files.fips),
@@ -121,7 +132,8 @@
           le: 0,
           health: 0,
           hospitals: 0,
-          treatment: 0
+          treatment: 0,
+          opioidSpent: 0
         };
 
         state.counties.push(record);
@@ -176,7 +188,14 @@
         county.treatment = treatmentAgg.counts.get(county.fips) || 0;
       }
 
-      // 4. Populate Statewide Summary Cards
+      // 4. Attach 2025 Opioid Settlement Expenditures by County Name
+      for (const row of opioidRows) {
+        const county = state.countyByName.get(normalizeCountyName(row["County"]));
+        if (!county) continue;
+        county.opioidSpent = Number(String(row["Expenditures"] || "0").replace(/[$,]/g, "")) || 0;
+      }
+
+      // 5. Populate Statewide Summary Cards
       setStat("stat-counties", state.counties.length);
       setStat("stat-fire", fireAgg.validTotal);
       setStat("stat-ems", emsAgg.validTotal);
@@ -186,7 +205,7 @@
       setStat("stat-treatment", treatmentAgg.validTotal);
       setStat("stat-cities", uniquePlaceFips.size || state.cityIndex.length);
 
-      // 5. Render UI components
+      // 6. Render UI components
       if (statusEl) statusEl.hidden = true;
       renderCountyGrid("name-asc");
       renderSources(sourceRows);
@@ -427,7 +446,7 @@
           featureLayer.bindTooltip(
             `<strong>${escapeHtml(county.fullName)}</strong><br>` +
               `2024 Pop: ${formatNumber(county.population)}<br>` +
-              `Fire: ${county.fire} &bull; EMS: ${county.ems} &bull; Law Enf.: ${county.le}`, +
+              `Fire: ${county.fire} &bull; EMS: ${county.ems} &bull; Law Enf.: ${county.le}<br>` +
               `2025 Opioid Funds Spent: <strong>${formatCurrency(county.opioidSpent)}</strong>`,
             { sticky: true }
           );
@@ -455,15 +474,6 @@
       mapEl.innerHTML = `<p style="padding:1rem;color:#475569;">Could not load ${escapeHtml(CFG.files.countyGeoJson)}.</p>`;
     }
   }
-function formatCurrency(val) {
-  const num = Number(String(val ?? "0").replace(/[$,]/g, ""));
-  if (!Number.isFinite(num)) return "$0.00";
-  return num.toLocaleString("en-US", {
-    style: "currency",
-    currency: "USD",
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2
-  });
 
   document.addEventListener("DOMContentLoaded", init);
 })();
