@@ -272,26 +272,40 @@
       .join("");
   }
 
+  // Lowercase, drop "County", and strip punctuation/spaces so "O'Brien" === "Obrien".
+  function nameKey(raw) {
+    return String(raw || "")
+      .toLowerCase()
+      .replace(/\s+county$/i, "")
+      .replace(/[^a-z0-9]/g, "");
+  }
+
   function matchCountyFromGeoFeature(props = {}) {
-    // 1) Any property that looks like a FIPS/GEOID field. Require a full 19xxx code
-    //    so a state-level value like "19" can't be padded into Benton.
-    for (const [key, val] of Object.entries(props)) {
-      if (/fips|geoid/i.test(key)) {
-        const fips = normalizeFips(val, { allowShort: false });
-        if (fips && state.countyByFips.has(fips)) return state.countyByFips.get(fips);
-      }
-      // County-only codes like COUNTYFP = "001" are the one place padding is right.
-      if (/^countyfp$/i.test(key)) {
+    const entries = Object.entries(props);
+
+    // 1) County-only code fields (e.g. COUNTY_FIPS_CODE = 141, COUNTYFP = "001").
+    //    Padding a 1-3 digit code to 19xxx is correct here.
+    for (const [key, val] of entries) {
+      if (/county.*fips|countyfp|cnty.*fips/i.test(key)) {
         const fips = normalizeFips(val);
         if (fips && state.countyByFips.has(fips)) return state.countyByFips.get(fips);
       }
     }
 
-    // 2) Fall back to the county name.
-    for (const [key, val] of Object.entries(props)) {
+    // 2) Full FIPS/GEOID fields. Require a full 19xxx code so a state-level
+    //    value like "19" can't be padded into Benton.
+    for (const [key, val] of entries) {
+      if (/fips|geoid/i.test(key)) {
+        const fips = normalizeFips(val, { allowShort: false });
+        if (fips && state.countyByFips.has(fips)) return state.countyByFips.get(fips);
+      }
+    }
+
+    // 3) Fall back to the county name, ignoring punctuation.
+    for (const [key, val] of entries) {
       if (!/^(name|county|countyname|county_name|namelsad)$/i.test(key)) continue;
-      const name = String(val || "").trim().replace(/\s+County$/i, "").toLowerCase();
-      const hit = state.counties.find((c) => c.shortName.toLowerCase() === name);
+      const target = nameKey(val);
+      const hit = state.counties.find((c) => nameKey(c.shortName) === target);
       if (hit) return hit;
     }
     return null;
