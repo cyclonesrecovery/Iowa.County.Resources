@@ -336,4 +336,61 @@
   }
 
   document.addEventListener("DOMContentLoaded", init);
+
+  function formatCurrency(val) {
+  const num = Number(String(val ?? "0").replace(/[$,]/g, ""));
+  if (!Number.isFinite(num)) return "$0.00";
+  return num.toLocaleString("en-US", {
+    style: "currency",
+    currency: "USD",
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  });
+}
+
+function renderOpioidFunding(opioidRows, countyShortName) {
+  const container = document.getElementById("opioid-funding-section");
+  if (!container) return;
+
+  const target = normalizeCountyName(countyShortName);
+  const match = opioidRows.find(
+    (r) => normalizeCountyName(r["County"]) === target
+  );
+
+  if (!match) {
+    container.innerHTML = `
+      <h2>2025 Opioid Settlement Funding</h2>
+      <p class="empty-note">No opioid settlement funding record found for ${escapeHtml(countyShortName)} County.</p>
+    `;
+    return;
+  }
+
+  const activities = String(match["Funded Activities"] || "").trim();
+
+  container.innerHTML = `
+    <h2>2025 Opioid Settlement Funding</h2>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <span class="stat-value">${formatCurrency(match["Start Balance"])}</span>
+        <span class="stat-label">Start Balance</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value">${formatCurrency(match["Funds Received"])}</span>
+        <span class="stat-label">Funds Received</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value">${formatCurrency(match["Expenditures"])}</span>
+        <span class="stat-label">Expenditures</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value">${formatCurrency(match["End Balance"])}</span>
+        <span class="stat-label">End Balance</span>
+      </div>
+    </div>
+    <div class="agency-card" style="margin-top: 1rem;">
+      <h3>Funded Activities</h3>
+      <p>${activities ? escapeHtml(activities) : "No funded activities listed."}</p>
+    </div>
+  `;
+
 })();
