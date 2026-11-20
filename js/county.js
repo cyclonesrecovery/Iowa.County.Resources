@@ -8,7 +8,8 @@
       le: "data/LEAgenciesByCounty.csv",
       health: "data/IACountyHealthDepts.csv",
       hospitals: "data/IAHospitalsByCounty.csv",
-      treatment: "data/IATreatmentFacilities.csv"
+      treatment: "data/IATreatmentFacilities.csv",
+      opioidFunding: "data/2025OpioidSettlementFundingIowa.csv"
     }
   };
 
@@ -19,7 +20,9 @@
   function normalizeFips(raw) {
     if (raw === null || raw === undefined) return "";
     const cleaned = String(raw).trim().replace(/\.0$/, "");
-    return /^19\d{3}$/.test(cleaned) ? cleaned : "";
+    if (/^19\d{3}$/.test(cleaned)) return cleaned;
+    if (/^\d{1,3}$/.test(cleaned)) return `19${cleaned.padStart(3, "0")}`;
+    return "";
   }
 
   function normalizeCountyName(raw) {
@@ -31,6 +34,17 @@
 
   function formatNumber(num) {
     return Number(num || 0).toLocaleString("en-US");
+  }
+
+  function formatCurrency(val) {
+    const num = Number(String(val ?? "0").replace(/[$,]/g, ""));
+    if (!Number.isFinite(num)) return "$0.00";
+    return num.toLocaleString("en-US", {
+      style: "currency",
+      currency: "USD",
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
   }
 
   function formatPct(part, total) {
@@ -75,7 +89,8 @@
         leRows,
         healthRows,
         hospitalRows,
-        treatmentRows
+        treatmentRows,
+        opioidRows
       ] = await Promise.all([
         parseCsv(CFG.files.fips),
         parseCsv(CFG.files.population),
@@ -84,7 +99,8 @@
         parseCsv(CFG.files.le),
         parseCsv(CFG.files.health),
         parseCsv(CFG.files.hospitals),
-        parseCsv(CFG.files.treatment)
+        parseCsv(CFG.files.treatment),
+        parseCsv(CFG.files.opioidFunding)
       ]);
 
       const counties = fipsRows
@@ -165,6 +181,8 @@
 
       renderMunicipalities(totalCountyPop, "pop-desc", params.get("city") || "");
       setupMuniSort(totalCountyPop, params.get("city") || "");
+
+      renderOpioidFunding(opioidRows, currentCounty);
 
       renderAgencyGroups({
         fireList,
@@ -279,6 +297,51 @@
     });
   }
 
+  function renderOpioidFunding(opioidRows, county) {
+    const container = document.getElementById("opioid-funding-section");
+    if (!container) return;
+
+    const match = opioidRows.find(
+      (r) => normalizeFips(r["FIPS"]) === county.fips
+    );
+
+    if (!match) {
+      container.innerHTML = `
+        <h2 id="opioid-heading">2025 Opioid Settlement Funding</h2>
+        <p class="empty-note">No opioid settlement funding record found for ${escapeHtml(county.fullName)}.</p>
+      `;
+      return;
+    }
+
+    const activities = String(match["Funded Activities"] || "").trim();
+
+    container.innerHTML = `
+      <h2 id="opioid-heading">2025 Opioid Settlement Funding</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-value">${formatCurrency(match["Start Balance"])}</span>
+          <span class="stat-label">Start Balance</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">${formatCurrency(match["Funds Received"])}</span>
+          <span class="stat-label">Funds Received</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">${formatCurrency(match["Expenditures"])}</span>
+          <span class="stat-label">Expenditures</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">${formatCurrency(match["End Balance"])}</span>
+          <span class="stat-label">End Balance</span>
+        </div>
+      </div>
+      <div class="agency-card" style="margin-top: 1rem;">
+        <h3>Funded Activities</h3>
+        <p>${activities ? escapeHtml(activities) : "No funded activities listed."}</p>
+      </div>
+    `;
+  }
+
   function renderAgencyCard(title, items, formatter) {
     const listHtml =
       items.length === 0
@@ -336,61 +399,4 @@
   }
 
   document.addEventListener("DOMContentLoaded", init);
-
-  function formatCurrency(val) {
-  const num = Number(String(val ?? "0").replace(/[$,]/g, ""));
-  if (!Number.isFinite(num)) return "$0.00";
-  return num.toLocaleString("en-US", {
-    style: "currency",
-    currency: "USD",
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2
-  });
-}
-
-function renderOpioidFunding(opioidRows, countyShortName) {
-  const container = document.getElementById("opioid-funding-section");
-  if (!container) return;
-
-  const target = normalizeCountyName(countyShortName);
-  const match = opioidRows.find(
-    (r) => normalizeCountyName(r["County"]) === target
-  );
-
-  if (!match) {
-    container.innerHTML = `
-      <h2>2025 Opioid Settlement Funding</h2>
-      <p class="empty-note">No opioid settlement funding record found for ${escapeHtml(countyShortName)} County.</p>
-    `;
-    return;
-  }
-
-  const activities = String(match["Funded Activities"] || "").trim();
-
-  container.innerHTML = `
-    <h2>2025 Opioid Settlement Funding</h2>
-    <div class="stats-grid">
-      <div class="stat-card">
-        <span class="stat-value">${formatCurrency(match["Start Balance"])}</span>
-        <span class="stat-label">Start Balance</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-value">${formatCurrency(match["Funds Received"])}</span>
-        <span class="stat-label">Funds Received</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-value">${formatCurrency(match["Expenditures"])}</span>
-        <span class="stat-label">Expenditures</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-value">${formatCurrency(match["End Balance"])}</span>
-        <span class="stat-label">End Balance</span>
-      </div>
-    </div>
-    <div class="agency-card" style="margin-top: 1rem;">
-      <h3>Funded Activities</h3>
-      <p>${activities ? escapeHtml(activities) : "No funded activities listed."}</p>
-    </div>
-  `;
-
 })();
