@@ -138,37 +138,6 @@
     </div>
   </footer>
 
-  <script>
-    window.IA_CONFIG = {
-      files: {
-        fips: "data/IACountyFIPS.csv",
-        population: "data/IACityCountyPopulation2024.csv",
-        fire: "data/FireDeptsByCounty.csv",
-        ems: "data/EMSByCounty.csv",
-        le: "data/LEAgenciesByCounty.csv",
-        health: "data/IACountyHealthDepts.csv",
-        hospitals: "data/IAHospitalsByCounty.csv",
-        treatment: "data/IATreatmentFacilities.csv",
-        opioidFunding: "data/2025OpioidSettlementFundingIowa.csv",
-        sources: "data/DataSources.csv",
-        countyGeoJson: "County.geojson",
-        cityGeoJson: "data/City_Limit_Boundaries_for_the_State_of_Iowa.geojson",
-        townshipGeoJson: "Political_Township.geojson"
-      },
-      // Key columns verified across your CSV files
-      columns: {
-        fipsCode: "FIPS",
-        countyShortName: "County Name",
-        countyFullName: "County",
-        popCountyFips: "county_fips_code",
-        popCountyName: "county",
-        popCityName: "city",
-        popEstimate: "estimate",
-        sourceName: "Source",
-        sourceLink: "Link"
-      }
-    };
-  </script>
 
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
   <script
@@ -176,6 +145,8 @@
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
     crossorigin=""
   ></script>
+  <script src="js/config.js"></script>
+  <script src="js/common.js"></script>
   <script src="js/index.js"></script>
 </body>
 </html>
