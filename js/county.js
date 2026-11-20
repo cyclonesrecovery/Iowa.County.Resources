@@ -1,6 +1,6 @@
 (function () {
   const CFG = window.IA_CONFIG;
-  const { normalizeFips, parseNumber, formatNumber, formatCurrency, escapeHtml, setText, loadCsvs } = window.IA;
+  const { normalizeFips, parseNumber, formatNumber, escapeHtml, setText, loadCsvs } = window.IA;
 
   let currentCounty = null;
   let allMunicipalities = [];
@@ -26,7 +26,7 @@
     try {
       const d = await loadCsvs(CFG.files, [
         "fips", "population", "fire", "ems", "le",
-        "health", "hospitals", "treatment", "opioidFunding"
+        "health", "hospitals", "treatment"
       ]);
 
       const counties = d.fips
@@ -105,7 +105,6 @@
       const highlightCity = params.get("city") || "";
       renderMunicipalities(totalCountyPop, "pop-desc", highlightCity);
       setupMuniSort(totalCountyPop, highlightCity);
-      renderOpioidFunding(d.opioidFunding, currentCounty);
       renderAgencyGroups(lists);
 
       if (statusEl) statusEl.hidden = true;
@@ -202,42 +201,6 @@
     select.addEventListener("change", (e) => {
       renderMunicipalities(totalCountyPop, e.target.value, highlightCity);
     });
-  }
-
-  function renderOpioidFunding(opioidRows, county) {
-    const container = document.getElementById("opioid-funding-section");
-    if (!container) return;
-
-    const match = opioidRows.find((r) => normalizeFips(r["FIPS"]) === county.fips);
-
-    if (!match) {
-      container.innerHTML = `
-        <h2 id="opioid-heading">2025 Opioid Settlement Funding</h2>
-        <p class="empty-note">No opioid settlement funding record found for ${escapeHtml(county.fullName)}.</p>
-      `;
-      return;
-    }
-
-    const activities = String(match["Funded Activities"] || "").trim();
-    const card = (field, label) => `
-        <div class="stat-card">
-          <span class="stat-value">${formatCurrency(match[field])}</span>
-          <span class="stat-label">${label}</span>
-        </div>`;
-
-    container.innerHTML = `
-      <h2 id="opioid-heading">2025 Opioid Settlement Funding</h2>
-      <div class="stats-grid">
-        ${card("Start Balance", "Start Balance")}
-        ${card("Funds Received", "Funds Received")}
-        ${card("Expenditures", "Expenditures")}
-        ${card("End Balance", "End Balance")}
-      </div>
-      <div class="agency-card" style="margin-top: 1rem;">
-        <h3>Funded Activities</h3>
-        <p>${activities ? escapeHtml(activities) : "No funded activities listed."}</p>
-      </div>
-    `;
   }
 
   function renderAgencyCard(title, items, formatter) {
