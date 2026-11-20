@@ -18,21 +18,16 @@
   const state = {
     counties: [],          // Array of 99 county summary objects
     countyByFips: new Map(),
-    countyByName: new Map(),
     cityIndex: []          // Array of { city, cleanCity, fips, countyName, pop }
   };
 
   function normalizeFips(raw) {
     if (raw === null || raw === undefined) return "";
     const cleaned = String(raw).trim().replace(/\.0$/, "");
-    return /^19\d{3}$/.test(cleaned) ? cleaned : "";
-  }
-
-  function normalizeCountyName(raw) {
-    return String(raw || "")
-      .trim()
-      .replace(/\s+County$/i, "")
-      .toLowerCase();
+    if (/^19\d{3}$/.test(cleaned)) return cleaned;
+    // Handle 1-to-3 digit county-only codes (e.g., "1" or "169" -> "19001" or "19169")
+    if (/^\d{1,3}$/.test(cleaned)) return `19${cleaned.padStart(3, "0")}`;
+    return "";
   }
 
   function formatNumber(num) {
@@ -113,7 +108,7 @@
         parseCsv(CFG.files.sources)
       ]);
 
-      // 1. Initialize master 99-county lookup from IACountyFIPS.csv
+      // 1. Initialize master 99-county lookup strictly by FIPS
       for (const row of fipsRows) {
         const fips = normalizeFips(row["FIPS"]);
         if (!fips) continue;
@@ -138,10 +133,9 @@
 
         state.counties.push(record);
         state.countyByFips.set(fips, record);
-        state.countyByName.set(normalizeCountyName(shortName), record);
       }
 
-      // 2. Process 2024 City & County Populations (IACityCountyPopulation2024.csv)
+      // 2. Process 2024 City & County Populations by county_fips_code
       const uniquePlaceFips = new Set();
 
       for (const row of popRows) {
@@ -152,10 +146,8 @@
         const cityRaw = String(row["city"] || "").trim();
         const estimate = Number(String(row["estimate"] || "0").replace(/,/g, "")) || 0;
 
-        // Every row (including "Balance of <County> County") contributes to total county population
         county.population += estimate;
 
-        // Exclude unincorporated "Balance of ..." rows when counting municipalities
         if (!/^Balance of /i.test(cityRaw) && cityRaw !== "") {
           county.municipalityCount += 1;
           if (row["place_fips_code"]) {
@@ -171,7 +163,7 @@
         }
       }
 
-      // 3. Aggregate department & facility counts by county FIPS
+      // 3. Aggregate department & facility counts strictly by FIPS
       const fireAgg = countByFips(fireRows, "FIPS");
       const emsAgg = countByFips(emsRows, "FIPS");
       const leAgg = countByFips(leRows, "FIPS");
@@ -188,10 +180,12 @@
         county.treatment = treatmentAgg.counts.get(county.fips) || 0;
       }
 
-      // 4. Attach 2025 Opioid Settlement Expenditures by County Name
+      // 4. Attach 2025 Opioid Settlement Expenditures strictly by FIPS
       for (const row of opioidRows) {
-        const county = state.countyByName.get(normalizeCountyName(row["County"]));
-        if (!county) continue;
+        const fips = normalizeFips(row["FIPS"]);
+        const county = state.countyByFips.get(fips);
+        if (!county) continue; // Automatically ignores any total/statewide row without a valid county FIPS
+
         county.opioidSpent = Number(String(row["Expenditures"] || "0").replace(/[$,]/g, "")) || 0;
       }
 
@@ -368,13 +362,13 @@
   }
 
   function matchCountyFromGeoFeature(props = {}) {
-    // Check common FIPS property keys across Iowa GIS GeoJSON schemas
     const fipsCandidates = [
       props.FIPS,
       props.fips,
       props.GEOID,
       props.geoid,
-      props.COUNTYFP ? `19${String(props.COUNTYFP).padStart(3, "0")}` : "",
+      props.COUNTYFP,
+      props.countyfp,
       props.FIPS_INT
     ];
 
@@ -382,25 +376,6 @@
       const fips = normalizeFips(cand);
       if (fips && state.countyByFips.has(fips)) {
         return state.countyByFips.get(fips);
-      }
-    }
-
-    // Fallback: match by common county name property keys
-    const nameCandidates = [
-      props.COUNTY,
-      props.County,
-      props.county,
-      props.NAME,
-      props.Name,
-      props.name,
-      props.COUNTY_NAME,
-      props.NAMELSAD
-    ];
-
-    for (const cand of nameCandidates) {
-      const norm = normalizeCountyName(cand);
-      if (norm && state.countyByName.has(norm)) {
-        return state.countyByName.get(norm);
       }
     }
 
