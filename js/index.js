@@ -95,10 +95,22 @@
       }
 
       // 4. Attach 2025 Opioid Settlement Expenditures strictly by FIPS
+      let opioidMatched = 0;
       for (const row of d.opioidFunding) {
         const county = state.countyByFips.get(normalizeFips(row["FIPS"]));
         if (!county) continue; // ignores total/statewide rows without a valid county FIPS
         county.opioidSpent = parseNumber(row["Expenditures"]);
+        opioidMatched += 1;
+      }
+      const opioidNonZero = state.counties.filter((c) => c.opioidSpent > 0).length;
+      console.info(
+        `Opioid data: ${d.opioidFunding.length} rows, ${opioidMatched} matched a county, ${opioidNonZero} counties with spending > 0.`
+      );
+      if (opioidMatched === 0 || opioidNonZero === 0) {
+        console.warn(
+          "Opioid data check. Headers:", JSON.stringify(Object.keys(d.opioidFunding[0] || {})),
+          "First row:", JSON.stringify(d.opioidFunding[0] || {})
+        );
       }
 
       // 5. Populate Statewide Summary Cards
@@ -352,17 +364,27 @@
           );
 
           featureLayer.on({
-            mouseover: (e) => {
-              e.target.setStyle(hoverStyle);
-              e.target.bringToFront();
+            // Note: no bringToFront() here. Re-appending the SVG path on hover
+            // cancels the pending mouseout in Edge and leaves tooltips stuck open.
+            mouseover: (e) => e.target.setStyle(hoverStyle),
+            mouseout: (e) => {
+              layer.resetStyle(e.target);
+              e.target.closeTooltip();
             },
-            mouseout: (e) => layer.resetStyle(e.target),
             click: () => {
               window.location.href = `county.html?fips=${encodeURIComponent(county.fips)}`;
             }
           });
         }
       }).addTo(map);
+
+      // Safety net: if the pointer leaves the whole map, clear any stuck highlight/tooltip.
+      map.on("mouseout", () =>
+        layer.eachLayer((l) => {
+          layer.resetStyle(l);
+          l.closeTooltip();
+        })
+      );
 
       console.info(`County map: ${matched} of ${geojson.features.length} features matched a county.`);
       if (unmatched.length) {
